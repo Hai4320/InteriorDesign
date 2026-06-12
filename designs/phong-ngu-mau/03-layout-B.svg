@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-60 -60 470 520" font-family="sans-serif">
+  <defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+    <path d="M50 0H0V50" fill="none" stroke="#ddd" stroke-width="1"/>
+  </pattern></defs>
+
+  <!-- PHƯƠNG ÁN B — đầu giường tựa tường N (dưới cửa sổ). Tỉ lệ 1px = 1cm. Lòng phòng 350x400 -->
+  <rect x="0" y="0" width="350" height="400" fill="url(#grid)" stroke="#222" stroke-width="10"/>
+
+  <!-- Cửa ra vào: tường S, offset 20, rộng 80, mở vào trong -->
+  <line x1="20" y1="400" x2="100" y2="400" stroke="#fff" stroke-width="10"/>
+  <path d="M 20 400 A 80 80 0 0 1 100 320" fill="none" stroke="#999" stroke-dasharray="4 4"/>
+  <text x="60" y="370" text-anchor="middle" font-size="10" fill="#999">cửa 80</text>
+
+  <!-- Cửa sổ: tường N, offset 100, rộng 140 (nét đôi) -->
+  <line x1="100" y1="-3" x2="240" y2="-3" stroke="#69c" stroke-width="2"/>
+  <line x1="100" y1="-8" x2="240" y2="-8" stroke="#69c" stroke-width="2"/>
+  <text x="170" y="-14" text-anchor="middle" font-size="10" fill="#69c">cửa sổ 140 (bệ 90)</text>
+
+  <!-- ĐỒ NỘI THẤT -->
+  <g><!-- Giường: đầu tựa tường N, đầu giường che 1 phần cửa sổ -->
+    <rect x="95" y="0" width="160" height="200" fill="#cfe3f5" stroke="#557"/>
+    <text x="175" y="96" text-anchor="middle" font-size="14">Giường 160×200</text>
+    <text x="175" y="112" text-anchor="middle" font-size="10">(đầu tựa N — che 1 phần cửa sổ)</text>
+  </g>
+  <g><!-- Tab trái -->
+    <rect x="45" y="0" width="45" height="40" fill="#cfe3f5" stroke="#557"/>
+    <text x="67" y="24" text-anchor="middle" font-size="9">Tab 45×40</text>
+  </g>
+  <g><!-- Tab phải -->
+    <rect x="260" y="0" width="45" height="40" fill="#cfe3f5" stroke="#557"/>
+    <text x="282" y="24" text-anchor="middle" font-size="9">Tab 45×40</text>
+  </g>
+  <g><!-- Tủ quần áo cánh lùa: tường E (chừa khe ẩm 2cm) -->
+    <rect x="283" y="200" width="65" height="180" fill="#e8dcc8" stroke="#875"/>
+    <text x="315" y="290" text-anchor="middle" font-size="11" transform="rotate(-90 315 290)">Tủ lùa 180×65</text>
+  </g>
+  <g><!-- Bàn làm việc: tường S, quay mặt vào tường -->
+    <rect x="130" y="340" width="120" height="60" fill="#d6e8d0" stroke="#575"/>
+    <text x="190" y="366" text-anchor="middle" font-size="12">Bàn LV 120×60</text>
+  </g>
+  <g><!-- Ghế làm việc (vị trí cất) -->
+    <rect x="160" y="280" width="60" height="60" fill="#d6e8d0" stroke="#575"/>
+    <text x="190" y="314" text-anchor="middle" font-size="10">Ghế 60×60</text>
+  </g>
+  <g><!-- Đèn sàn: tường W -->
+    <circle cx="40" cy="240" r="15" fill="#f2e4ef" stroke="#856"/>
+    <text x="40" y="270" text-anchor="middle" font-size="9">Đèn Ø30</text>
+  </g>
+  <!-- Cây xanh: KHÔNG còn vị trí đạt chuẩn trong PA-B (xem 03-layout.md) -->
+
+  <!-- ĐƯỜNG GIÓNG KHOẢNG CÁCH QUAN TRỌNG -->
+  <g stroke="#c33" fill="#c33" font-size="11">
+    <line x1="0" y1="100" x2="95" y2="100" stroke-dasharray="3 3"/>
+    <text x="47" y="95" text-anchor="middle" stroke="none">95</text>
+    <line x1="255" y1="100" x2="350" y2="100" stroke-dasharray="3 3"/>
+    <text x="302" y="95" text-anchor="middle" stroke="none">95</text>
+    <line x1="175" y1="200" x2="175" y2="280" stroke-dasharray="3 3"/>
+    <text x="183" y="244" stroke="none">80</text>
+    <line x1="250" y1="360" x2="283" y2="360" stroke-dasharray="3 3"/>
+    <text x="266" y="355" text-anchor="middle" stroke="none">33 ❌</text>
+    <line x1="55" y1="240" x2="95" y2="240" stroke-dasharray="3 3"/>
+    <text x="75" y="235" text-anchor="middle" stroke="none">40 ❌</text>
+  </g>
+
+  <!-- Kích thước tổng -->
+  <text x="175" y="-30" text-anchor="middle" font-size="16">350 cm</text>
+  <text x="-30" y="200" text-anchor="middle" font-size="16" transform="rotate(-90 -30 200)">400 cm</text>
+  <text x="175" y="445" text-anchor="middle" font-size="13" fill="#333">PA-B: đầu giường tựa tường N — 3 lỗi ergonomics (xem 03-layout.md)</text>
+</svg>

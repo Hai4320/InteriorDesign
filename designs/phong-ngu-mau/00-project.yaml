@@ -1,0 +1,50 @@
+project:
+  slug: phong-ngu-mau
+  type: phong-ngu
+  created: 2026-06-12
+status:                  # cập nhật bởi từng skill khi xong
+  brief: done
+  concept: done
+  layout: done
+  render: done
+  dutoan: done
+  present: done
+room:
+  width_cm: 350          # cạnh ngang bản vẽ (tường N/S)
+  depth_cm: 400          # cạnh dọc bản vẽ (tường E/W)
+  height_cm: 270
+  doors:
+    - wall: S
+      offset_cm: 20      # cách góc trái của tường S (= x nhỏ trên bản vẽ)
+      width_cm: 80
+      swing: in-right    # mở vào trong, bản lề đầu offset lớn (x=100) — khớp cung mở trong 03-layout.svg
+  windows:
+    - wall: N
+      offset_cm: 100
+      width_cm: 140
+      height_cm: 140
+      sill_cm: 90
+  sun: dong-nam          # hướng la bàn thật của cửa sổ (N/E/S/W chỉ là quy ước bản vẽ)
+  notes:
+    - "tường E giáp WC (ẩm) - đồ gỗ kê sát cần chừa khe thoáng 3-5cm"
+    - "vị trí ổ điện, điều hoà, công tắc: user chưa khai - null (cần bổ sung trước khi lắp đèn/bàn làm việc)"
+budget:
+  total_trieu: 50
+  scope: do-roi          # do-roi | do-roi-va-hoan-thien
+  timeline: "muốn xong trong 1 tháng"
+users: "vợ chồng ~30 tuổi, làm việc buổi tối tại phòng (cần bàn làm việc), đọc sách trước khi ngủ, không thú cưng, không trẻ nhỏ"
+style_hints:
+  like: [scandinavian, japandi]
+  dislike: [neo-classic]
+  colors_like: [be, xanh]
+  colors_dislike: [do]
+keep_items:
+  - {name: "nệm 1m6", w: 160, d: 200}
+constraints: ["nhà thuê - hạn chế khoan tường"]
+concept:
+  name: "Trà Sớm"
+  style: japandi
+  palette: {nen: "#EAE3D9", phu: ["#A89F91", "#CBC2B4"], nhan: "#56655A", vatlieu: "#8A6F52"}
+  materials: [go-tan-bi-tong-tram, may-tre, vai-bo-linen, gom-tho]
+  key_items: [giuong-go-thap, tu-quan-ao-canh-lua-go-phang, ban-lam-viec-go-thanh-manh,
+              den-san-giay-washi, rem-2-lop-vai-bo, tham-det-be, cay-xanh-binh-gom]

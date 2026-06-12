@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trà Sớm — Hồ sơ thiết kế phòng ngủ master (phong-ngu-mau)</title>
+<style>
+  :root{
+    --nen:#EAE3D9;        /* nền 60% */
+    --nen-nhat:#F5F1EA;   /* nền concept nhạt hoá — nền trang */
+    --phu1:#A89F91;
+    --phu2:#CBC2B4;
+    --nhan:#56655A;       /* nhấn 10% — heading */
+    --vatlieu:#8A6F52;
+    --chu:#3A3631;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; padding:24px 16px 48px;
+    background:var(--nen-nhat); color:var(--chu);
+    font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height:1.55;
+  }
+  main{max-width:960px; margin:0 auto;}
+  h1,h2,h3{color:var(--nhan); line-height:1.25;}
+  h1{font-size:1.9rem; margin:.2em 0 .1em;}
+  h2{font-size:1.4rem; border-bottom:2px solid var(--phu2); padding-bottom:.25em; margin-top:2.2em;}
+  h3{font-size:1.1rem; margin-top:1.6em;}
+  section{background:#FFFFFFAA; border:1px solid var(--phu2); border-radius:10px; padding:18px 22px; margin-top:22px;}
+  table{border-collapse:collapse; width:100%; margin:.8em 0; font-size:.92rem;}
+  th,td{border:1px solid var(--phu2); padding:6px 9px; text-align:left; vertical-align:top;}
+  th{background:var(--nen); color:var(--nhan);}
+  .muted{color:#7a746b; font-size:.88rem;}
+  .pipeline{font-size:.95rem; letter-spacing:.02em; margin:.6em 0 0; padding:8px 12px; background:var(--nen); border-radius:8px; display:inline-block;}
+  /* Palette swatches */
+  .swatches{display:flex; flex-wrap:wrap; gap:14px; margin:1em 0;}
+  .swatch{width:150px;}
+  .swatch .chip{height:90px; border-radius:8px; border:1px solid #00000022;}
+  .swatch .hex{font-family:ui-monospace, Menlo, monospace; font-size:.85rem; margin-top:4px;}
+  .swatch .role{font-size:.82rem; color:#5d574e;}
+  /* Moodboard chips */
+  .chips{display:flex; flex-wrap:wrap; gap:8px; margin:.6em 0;}
+  .kw{background:var(--nen); border:1px solid var(--phu1); border-radius:999px; padding:5px 13px; font-size:.85rem;}
+  .kw code{font-family:ui-monospace, Menlo, monospace; font-size:.8rem; color:var(--nhan);}
+  /* Layout toggle + SVG */
+  .toggle-bar{margin:.8em 0;}
+  .toggle-bar button{
+    font:inherit; padding:8px 18px; margin-right:8px; cursor:pointer;
+    border:1px solid var(--nhan); border-radius:8px; background:#fff; color:var(--nhan);
+  }
+  .toggle-bar button.active{background:var(--nhan); color:#fff;}
+  .badge{display:inline-block; background:var(--nhan); color:#fff; border-radius:6px; font-size:.75rem; padding:2px 8px; vertical-align:middle; margin-left:6px;}
+  .badge.loai{background:#9b4a3f;}
+  .svg-wrap{background:#fff; border:1px solid var(--phu2); border-radius:8px; padding:8px; overflow:auto;}
+  .svg-wrap svg{display:block; width:100%; height:auto; max-width:640px; margin:0 auto;}
+  .plan-caption{font-size:.9rem; margin:.4em 0 0;}
+  .legend{display:flex; flex-wrap:wrap; gap:14px; margin:.7em 0; font-size:.86rem;}
+  .legend span i{display:inline-block; width:16px; height:16px; border:1px solid #777; border-radius:3px; vertical-align:-3px; margin-right:5px;}
+  .pass{color:#2e6b3e; font-weight:600;}
+  .fail{color:#9b2c20; font-weight:600;}
+  .warn{background:#FBF3DC; border-left:4px solid #C9A14A; padding:10px 14px; border-radius:6px; font-size:.9rem; margin:.8em 0;}
+  /* Prompt cards */
+  .card{border:1px solid var(--phu2); border-radius:10px; padding:14px 16px; margin:14px 0; background:#fff;}
+  .card h3{margin-top:0;}
+  .card pre{
+    background:#F3EFE8; border:1px solid var(--phu2); border-radius:8px;
+    padding:12px; white-space:pre-wrap; word-break:break-word; font-size:.82rem;
+    font-family:ui-monospace, Menlo, Consolas, monospace; margin:.5em 0;
+  }
+  .copy-btn{
+    font:inherit; font-size:.85rem; padding:5px 14px; cursor:pointer;
+    border:1px solid var(--nhan); border-radius:6px; background:var(--nhan); color:#fff;
+  }
+  details{margin:.5em 0;}
+  details summary{cursor:pointer; color:var(--nhan); font-weight:600;}
+  /* Budget banner */
+  .banner{border-radius:8px; padding:12px 16px; margin:.9em 0; font-size:.95rem;}
+  .banner.dat{background:#E2EFE2; border:1px solid #7FA882;}
+  .banner.vuot{background:#F7E3E0; border:1px solid #C98A80;}
+  tr.total td{font-weight:700; background:var(--nen);}
+  footer{margin-top:36px; padding-top:14px; border-top:2px solid var(--phu2); font-size:.85rem; color:#6d675e;}
+  footer code{font-family:ui-monospace, Menlo, monospace;}
+  @media print{
+    body{background:#fff; padding:0;}
+    section{border:none; background:#fff; padding:8px 0;}
+    button, .copy-btn, .toggle-bar{display:none !important;}
+    details{display:block;}
+    details > *{display:block;}
+    #sec-layout, #sec-render, #sec-budget{page-break-before:always;}
+    .svg-wrap{overflow:visible; border:none;}
+    .svg-wrap svg{max-width:600px; page-break-inside:avoid;}
+    table{page-break-inside:avoid;}
+    a{color:inherit; text-decoration:none;}
+  }
+</style>
+</head>
+<body>
+<main>
+
+<!-- ============ 1. HEADER ============ -->
+<header>
+  <p class="muted" style="margin:0;">Hồ sơ thiết kế nội thất · designs/phong-ngu-mau</p>
+  <h1>“Trà Sớm” — Phòng ngủ master</h1>
+  <p style="margin:.3em 0;">
+    Loại phòng: <strong>phòng ngủ (master)</strong> ·
+    Kích thước: <strong>350 × 400 × 270 cm</strong> (~14 m²) ·
+    Ngày lập dự án: <strong>2026-06-12</strong>
+  </p>
+  <p style="margin:.3em 0;">
+    Ngân sách: <strong>50 triệu VND</strong> ·
+    Phạm vi: <strong>đồ rời</strong> (không sơn, không sàn, không điện nước) ·
+    Thời gian: muốn xong trong 1 tháng
+  </p>
+  <p class="pipeline">
+    Pipeline: ✅ brief · ✅ concept · ✅ layout · ✅ render · ✅ dự toán · ✅ presentation
+  </p>
+</header>
+
+<!-- ============ 2. CONCEPT ============ -->
+<section id="sec-concept">
+  <h2>Concept — “Trà Sớm” (Japandi, lai accent xanh rêu)</h2>
+  <p><em>Mở cửa vào là một khoảng lặng: tường be ấm, giường gỗ thấp trải linen màu yến mạch,
+  ánh nắng sớm Đông Nam lọc qua rèm vải bố thành vệt mềm trên sàn. Ít đồ, mọi đường nét nằm
+  ngang và thấp, mắt được nghỉ. Buổi tối, đèn giấy washi đầu giường toả quầng sáng ấm vừa đủ
+  một trang sách — phòng vừa là chỗ ngủ vừa là chỗ thở.</em></p>
+  <p class="muted">User chọn concept thiên Japandi, lai ghép: thay nhấn đen mờ mặc định bằng
+  <strong>xanh rêu xám</strong> vì user thích màu xanh; đen chỉ còn ở chi tiết nhỏ (chân đèn, khung ghế).</p>
+
+  <h3>Bảng màu 60-30-10</h3>
+  <div class="swatches">
+    <div class="swatch">
+      <div class="chip" style="background:#EAE3D9;"></div>
+      <div class="hex">#EAE3D9 — be ấm</div>
+      <div class="role"><strong>Nền 60%</strong>: tường (giữ sơn hiện trạng nếu gần giống — nhà thuê), rèm lớp voan</div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background:#A89F91;"></div>
+      <div class="hex">#A89F91 — nâu xám greige</div>
+      <div class="role"><strong>Phụ 30%</strong>: chăn ga, rèm lớp dày, thảm</div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background:#CBC2B4;"></div>
+      <div class="hex">#CBC2B4 — be cát</div>
+      <div class="role"><strong>Phụ 30%</strong>: mặt tủ áo, vải bọc ghế đôn/đệm</div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background:#56655A;"></div>
+      <div class="hex">#56655A — xanh rêu xám</div>
+      <div class="role"><strong>Nhấn 10%</strong>: gối tựa, bình gốm, tranh dựa, chậu cây</div>
+    </div>
+    <div class="swatch">
+      <div class="chip" style="background:#8A6F52;"></div>
+      <div class="hex">#8A6F52 — gỗ tần bì hun khói</div>
+      <div class="role"><strong>Vật liệu</strong>: khung giường, bàn làm việc, tab, khung tủ</div>
+    </div>
+  </div>
+
+  <h3>Vật liệu chủ đạo</h3>
+  <p>Gỗ tần bì/óc chó tông trầm · mây tre (mặt đèn, khay) · vải bố + linen · gốm thô.</p>
+
+  <h3>Key items (7)</h3>
+  <ul>
+    <li>Giường gỗ thấp kiểu Nhật 1m6</li>
+    <li>Tủ quần áo cánh lùa mặt gỗ phẳng không tay nắm</li>
+    <li>Bàn làm việc gỗ thanh mảnh + ghế công thái học màu trầm</li>
+    <li>Đèn sàn giấy washi (đọc sách, không khoan tường)</li>
+    <li>Rèm 2 lớp vải bố</li>
+    <li>Thảm dệt be 160×230</li>
+    <li>Cây xanh chậu gốm thô</li>
+  </ul>
+
+  <h3>Moodboard — từ khoá tìm trên Pinterest</h3>
+  <p class="muted">Dán từng từ khoá vào ô tìm kiếm Pinterest để gom ảnh tham khảo:</p>
+  <div class="chips">
+    <span class="kw">Phòng ngủ Japandi tường be, giường gỗ thấp trải linen — <code>japandi bedroom low oak bed beige linen</code></span>
+    <span class="kw">Đèn sàn giấy washi cạnh đầu giường gỗ — <code>washi paper floor lamp bedside japandi</code></span>
+    <span class="kw">Tủ áo cánh lùa gỗ phẳng không tay nắm — <code>minimalist sliding door wardrobe wood japandi</code></span>
+    <span class="kw">Góc làm việc gỗ cạnh cửa sổ, ghế màu than — <code>japandi home office desk by window</code></span>
+    <span class="kw">Bộ gối xanh rêu trên nền chăn be — <code>sage green accent pillows beige bedding</code></span>
+    <span class="kw">Bình gốm thô + cành khô trên tab gỗ — <code>wabi sabi ceramic vase dried branch nightstand</code></span>
+  </div>
+
+  <p class="muted"><strong>Lưu ý ngân sách:</strong> ăn nhiều nhất ở <strong>tủ quần áo cánh lùa</strong> và
+  <strong>khung giường gỗ</strong> (~50% tổng); ghế công thái học là khoản đáng giữ phân khúc cao vì ngồi hằng đêm.</p>
+</section>
+
+<!-- ============ 3. LAYOUT ============ -->
+<section id="sec-layout">
+  <h2>Layout — Space Planning (tỉ lệ 1px = 1cm)</h2>
+  <p>Phương án chốt: <strong>PA-A — đầu giường tựa tường W</strong> (user chọn).
+  Phương án B (đầu giường tựa tường N, dưới cửa sổ) bị loại — 3 lỗi ergonomics.</p>
+
+  <div class="toggle-bar" role="group" aria-label="Chọn phương án layout">
+    <button type="button" id="btn-A" class="active" onclick="showPlan('A')">Phương án A — CHỐT ✓</button>
+    <button type="button" id="btn-B" onclick="showPlan('B')">Phương án B — bị loại</button>
+  </div>
+
+  <div id="plan-A">
+    <p class="plan-caption"><strong>PA-A</strong> <span class="badge">PHƯƠNG ÁN CHỐT</span> — đầu giường tựa tường W, góc làm việc NE cạnh cửa sổ. <strong>8/8 PASS, 0 FAIL.</strong></p>
+    <div class="svg-wrap">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-60 -60 470 520" font-family="sans-serif">
+  <defs><pattern id="gridA" width="50" height="50" patternUnits="userSpaceOnUse">
+    <path d="M50 0H0V50" fill="none" stroke="#ddd" stroke-width="1"/>
+  </pattern></defs>
+
+  <!-- PHƯƠNG ÁN A — đầu giường tựa tường W. Tỉ lệ 1px = 1cm. Lòng phòng 350x400 -->
+  <rect x="0" y="0" width="350" height="400" fill="url(#gridA)" stroke="#222" stroke-width="10"/>
+
+  <!-- Cửa ra vào: tường S, offset 20, rộng 80, mở vào trong (bản lề x=100 theo mẫu skill) -->
+  <line x1="20" y1="400" x2="100" y2="400" stroke="#fff" stroke-width="10"/>
+  <path d="M 20 400 A 80 80 0 0 1 100 320" fill="none" stroke="#999" stroke-dasharray="4 4"/>
+  <text x="60" y="370" text-anchor="middle" font-size="10" fill="#999">cửa 80</text>
+
+  <!-- Cửa sổ: tường N, offset 100, rộng 140 (nét đôi) -->
+  <line x1="100" y1="-3" x2="240" y2="-3" stroke="#69c" stroke-width="2"/>
+  <line x1="100" y1="-8" x2="240" y2="-8" stroke="#69c" stroke-width="2"/>
+  <text x="170" y="-14" text-anchor="middle" font-size="10" fill="#69c">cửa sổ 140 (bệ 90)</text>
+
+  <!-- ĐỒ NỘI THẤT (fill: ngủ #cfe3f5, lưu trữ #e8dcc8, ngồi/làm việc #d6e8d0, decor #f2e4ef) -->
+  <g><!-- Giường: đầu tựa tường W -->
+    <rect x="0" y="130" width="200" height="160" fill="#cfe3f5" stroke="#557"/>
+    <text x="100" y="206" text-anchor="middle" font-size="14">Giường 160×200</text>
+    <text x="100" y="222" text-anchor="middle" font-size="10">(đầu tựa tường W)</text>
+  </g>
+  <g><!-- Tab đầu giường bên N -->
+    <rect x="0" y="85" width="40" height="45" fill="#cfe3f5" stroke="#557"/>
+    <text x="20" y="111" text-anchor="middle" font-size="9">Tab 45×40</text>
+  </g>
+  <g><!-- Tab đầu giường bên S -->
+    <rect x="0" y="290" width="40" height="45" fill="#cfe3f5" stroke="#557"/>
+    <text x="20" y="316" text-anchor="middle" font-size="9">Tab 45×40</text>
+  </g>
+  <g><!-- Đèn sàn washi đọc sách, đầu giường bên N -->
+    <circle cx="60" cy="108" r="15" fill="#f2e4ef" stroke="#856"/>
+    <text x="60" y="76" text-anchor="middle" font-size="9">Đèn sàn Ø30</text>
+  </g>
+  <g><!-- Bàn làm việc: tường N, góc NE, mép trái hứng sáng cửa sổ -->
+    <rect x="225" y="0" width="120" height="60" fill="#d6e8d0" stroke="#575"/>
+    <text x="285" y="26" text-anchor="middle" font-size="12">Bàn LV 120×60</text>
+    <text x="285" y="40" text-anchor="middle" font-size="9">(cách tường E 5)</text>
+  </g>
+  <g><!-- Ghế làm việc (vị trí cất) -->
+    <rect x="255" y="60" width="60" height="60" fill="#d6e8d0" stroke="#575"/>
+    <text x="285" y="94" text-anchor="middle" font-size="10">Ghế 60×60</text>
+  </g>
+  <g><!-- Tủ quần áo cánh lùa: tường E, chừa khe 3cm chống ẩm (giáp WC) -->
+    <rect x="282" y="145" width="65" height="180" fill="#e8dcc8" stroke="#875"/>
+    <text x="314" y="230" text-anchor="middle" font-size="11" transform="rotate(-90 314 230)">Tủ lùa 180×65</text>
+    <text x="300" y="338" text-anchor="middle" font-size="8" fill="#875">khe ẩm 3</text>
+  </g>
+  <g><!-- Cây xanh chậu gốm, góc SE -->
+    <circle cx="317" cy="367" r="22.5" fill="#d6e8d0" stroke="#575"/>
+    <text x="317" y="371" text-anchor="middle" font-size="9">Cây Ø45</text>
+  </g>
+
+  <!-- ĐƯỜNG GIÓNG KHOẢNG CÁCH QUAN TRỌNG -->
+  <g stroke="#c33" fill="#c33" font-size="11">
+    <line x1="200" y1="215" x2="282" y2="215" stroke-dasharray="3 3"/>
+    <text x="241" y="210" text-anchor="middle" stroke="none">82</text>
+    <line x1="150" y1="0" x2="150" y2="130" stroke-dasharray="3 3"/>
+    <text x="158" y="70" stroke="none">130</text>
+    <line x1="150" y1="290" x2="150" y2="400" stroke-dasharray="3 3"/>
+    <text x="158" y="350" stroke="none">110</text>
+    <line x1="332" y1="60" x2="332" y2="145" stroke-dasharray="3 3"/>
+    <text x="338" y="106" stroke="none">85</text>
+  </g>
+
+  <!-- Kích thước tổng -->
+  <text x="175" y="-30" text-anchor="middle" font-size="16">350 cm</text>
+  <text x="-30" y="200" text-anchor="middle" font-size="16" transform="rotate(-90 -30 200)">400 cm</text>
+  <text x="175" y="445" text-anchor="middle" font-size="13" fill="#333">PA-A: đầu giường tựa tường W — góc làm việc NE cạnh cửa sổ</text>
+</svg>
+    </div>
+
+    <h3>Bảng ergonomics PA-A (tính từ toạ độ thật)</h3>
+    <table>
+      <thead><tr><th>Mã</th><th>Mô tả</th><th>Thực tế</th><th>Tối thiểu</th><th>Kết quả</th></tr></thead>
+      <tbody>
+        <tr><td>PN-01</td><td>Bên giường phía N (y: 130 − 0, dải x 75–200 thoáng)</td><td>130</td><td>60</td><td class="pass">✅ (≥ khuyến nghị 75)</td></tr>
+        <tr><td>PN-01</td><td>Bên giường phía S (y: 400 − 290)</td><td>110</td><td>60</td><td class="pass">✅</td></tr>
+        <tr><td>PN-02</td><td>Cuối giường → mặt tủ lùa (x: 282 − 200)</td><td>82</td><td>60</td><td class="pass">✅ (dưới khuyến nghị 90 một chút)</td></tr>
+        <tr><td>PN-04</td><td>Trước tủ áo cánh lùa (x: 282 − 200)</td><td>82</td><td>60</td><td class="pass">✅</td></tr>
+        <tr><td>PN-05</td><td>Giường không thẳng cửa, đầu tựa tường đặc</td><td>đầu tựa tường W; cửa (tường S) nhìn vào cạnh giường, không thẳng trục giường</td><td>—</td><td class="pass">✅</td></tr>
+        <tr><td>PN-06</td><td>Khoảng kéo ghế bàn làm việc (y: 145 − 60, tới mép tủ)</td><td>85</td><td>75</td><td class="pass">✅</td></tr>
+        <tr><td>LT-01</td><td>Lối đi chính cửa → bàn/tủ (chỗ hẹp nhất: chân giường ↔ tủ)</td><td>82</td><td>60</td><td class="pass">✅</td></tr>
+        <tr><td>LT-03</td><td>Vùng quét cửa r=80 quanh bản lề (100,400) trống</td><td>vật gần nhất (tab S, góc 40,335) cách 88.5</td><td>80</td><td class="pass">✅</td></tr>
+      </tbody>
+    </table>
+    <p><strong>PA-A: 8/8 PASS, 0 FAIL.</strong> Kiểm hình học: mọi rect nằm trong 0–350 × 0–400, không chồng nhau, không đè khe cửa (x 20–100, tường S) và cung mở r=80.</p>
+
+    <div class="warn">⚠️ LT-03 tính theo bản lề tại x=100 đúng như ví dụ mẫu trong SKILL interior-layout cho chính cửa này
+    (&quot;offset 20, rộng 80, mở vào-trái&quot; → arc tâm (100,400)). Nếu thực tế bản lề ở phía x=20 thì tab S lọt vùng quét
+    (cách 65 &lt; 80) → <strong>kiểm tra bản lề thật trước khi lắp; nếu bản lề trái, bỏ tab S hoặc thay bằng ghế đôn di động</strong>.</div>
+  </div>
+
+  <div id="plan-B" hidden>
+    <p class="plan-caption"><strong>PA-B</strong> <span class="badge loai">BỊ LOẠI</span> — đầu giường tựa tường N (dưới cửa sổ). <strong>4/7 PASS, 3 FAIL</strong> (sửa được phải hy sinh đèn đọc + chấp nhận giường gần thẳng cửa + đầu giường che cửa sổ) → loại.</p>
+    <div class="svg-wrap">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-60 -60 470 520" font-family="sans-serif">
+  <defs><pattern id="gridB" width="50" height="50" patternUnits="userSpaceOnUse">
+    <path d="M50 0H0V50" fill="none" stroke="#ddd" stroke-width="1"/>
+  </pattern></defs>
+
+  <!-- PHƯƠNG ÁN B — đầu giường tựa tường N (dưới cửa sổ). Tỉ lệ 1px = 1cm. Lòng phòng 350x400 -->
+  <rect x="0" y="0" width="350" height="400" fill="url(#gridB)" stroke="#222" stroke-width="10"/>
+
+  <!-- Cửa ra vào: tường S, offset 20, rộng 80, mở vào trong -->
+  <line x1="20" y1="400" x2="100" y2="400" stroke="#fff" stroke-width="10"/>
+  <path d="M 20 400 A 80 80 0 0 1 100 320" fill="none" stroke="#999" stroke-dasharray="4 4"/>
+  <text x="60" y="370" text-anchor="middle" font-size="10" fill="#999">cửa 80</text>
+
+  <!-- Cửa sổ: tường N, offset 100, rộng 140 (nét đôi) -->
+  <line x1="100" y1="-3" x2="240" y2="-3" stroke="#69c" stroke-width="2"/>
+  <line x1="100" y1="-8" x2="240" y2="-8" stroke="#69c" stroke-width="2"/>
+  <text x="170" y="-14" text-anchor="middle" font-size="10" fill="#69c">cửa sổ 140 (bệ 90)</text>
+
+  <!-- ĐỒ NỘI THẤT -->
+  <g><!-- Giường: đầu tựa tường N, đầu giường che 1 phần cửa sổ -->
+    <rect x="95" y="0" width="160" height="200" fill="#cfe3f5" stroke="#557"/>
+    <text x="175" y="96" text-anchor="middle" font-size="14">Giường 160×200</text>
+    <text x="175" y="112" text-anchor="middle" font-size="10">(đầu tựa N — che 1 phần cửa sổ)</text>
+  </g>
+  <g><!-- Tab trái -->
+    <rect x="45" y="0" width="45" height="40" fill="#cfe3f5" stroke="#557"/>
+    <text x="67" y="24" text-anchor="middle" font-size="9">Tab 45×40</text>
+  </g>
+  <g><!-- Tab phải -->
+    <rect x="260" y="0" width="45" height="40" fill="#cfe3f5" stroke="#557"/>
+    <text x="282" y="24" text-anchor="middle" font-size="9">Tab 45×40</text>
+  </g>
+  <g><!-- Tủ quần áo cánh lùa: tường E (chừa khe ẩm 2cm) -->
+    <rect x="283" y="200" width="65" height="180" fill="#e8dcc8" stroke="#875"/>
+    <text x="315" y="290" text-anchor="middle" font-size="11" transform="rotate(-90 315 290)">Tủ lùa 180×65</text>
+  </g>
+  <g><!-- Bàn làm việc: tường S, quay mặt vào tường -->
+    <rect x="130" y="340" width="120" height="60" fill="#d6e8d0" stroke="#575"/>
+    <text x="190" y="366" text-anchor="middle" font-size="12">Bàn LV 120×60</text>
+  </g>
+  <g><!-- Ghế làm việc (vị trí cất) -->
+    <rect x="160" y="280" width="60" height="60" fill="#d6e8d0" stroke="#575"/>
+    <text x="190" y="314" text-anchor="middle" font-size="10">Ghế 60×60</text>
+  </g>
+  <g><!-- Đèn sàn: tường W -->
+    <circle cx="40" cy="240" r="15" fill="#f2e4ef" stroke="#856"/>
+    <text x="40" y="270" text-anchor="middle" font-size="9">Đèn Ø30</text>
+  </g>
+  <!-- Cây xanh: KHÔNG còn vị trí đạt chuẩn trong PA-B (xem 03-layout.md) -->
+
+  <!-- ĐƯỜNG GIÓNG KHOẢNG CÁCH QUAN TRỌNG -->
+  <g stroke="#c33" fill="#c33" font-size="11">
+    <line x1="0" y1="100" x2="95" y2="100" stroke-dasharray="3 3"/>
+    <text x="47" y="95" text-anchor="middle" stroke="none">95</text>
+    <line x1="255" y1="100" x2="350" y2="100" stroke-dasharray="3 3"/>
+    <text x="302" y="95" text-anchor="middle" stroke="none">95</text>
+    <line x1="175" y1="200" x2="175" y2="280" stroke-dasharray="3 3"/>
+    <text x="183" y="244" stroke="none">80</text>
+    <line x1="250" y1="360" x2="283" y2="360" stroke-dasharray="3 3"/>
+    <text x="266" y="355" text-anchor="middle" stroke="none">33 ❌</text>
+    <line x1="55" y1="240" x2="95" y2="240" stroke-dasharray="3 3"/>
+    <text x="75" y="235" text-anchor="middle" stroke="none">40 ❌</text>
+  </g>
+
+  <!-- Kích thước tổng -->
+  <text x="175" y="-30" text-anchor="middle" font-size="16">350 cm</text>
+  <text x="-30" y="200" text-anchor="middle" font-size="16" transform="rotate(-90 -30 200)">400 cm</text>
+  <text x="175" y="445" text-anchor="middle" font-size="13" fill="#333">PA-B: đầu giường tựa tường N — 3 lỗi ergonomics (xem 03-layout.md)</text>
+</svg>
+    </div>
+
+    <h3>Bảng ergonomics PA-B</h3>
+    <table>
+      <thead><tr><th>Mã</th><th>Mô tả</th><th>Thực tế</th><th>Tối thiểu</th><th>Kết quả</th></tr></thead>
+      <tbody>
+        <tr><td>PN-01</td><td>Hai bên giường (95−0 / 350−255)</td><td>95 / 95</td><td>60</td><td class="pass">✅</td></tr>
+        <tr><td>PN-02</td><td>Cuối giường → ghế cất (280 − 200)</td><td>80</td><td>60</td><td class="pass">✅</td></tr>
+        <tr><td>PN-04</td><td>Trước tủ lùa, đoạn y 340–380 bị bàn chặn (283 − 250)</td><td>33</td><td>60</td><td class="fail">❌ → 1/3 dưới tủ khó dùng</td></tr>
+        <tr><td>PN-05</td><td>Chân giường quay về tường S có cửa; dải cửa x 20–100 chớm trùng mép giường x 95–100; đầu giường che cửa sổ (bệ 90)</td><td>gần thẳng cửa</td><td>—</td><td class="fail">❌</td></tr>
+        <tr><td>PN-06</td><td>Kéo ghế (340 − 200)</td><td>140</td><td>75</td><td class="pass">✅</td></tr>
+        <tr><td>LT-01</td><td>Lối chính cửa → giường bên W, hẹp nhất tại đèn sàn (95 − 55)</td><td>40</td><td>60</td><td class="fail">❌ → phải bỏ đèn/đổi tuyến</td></tr>
+        <tr><td>LT-03</td><td>Vùng quét cửa trống (bàn cách mép quét 30)</td><td>trống</td><td>80</td><td class="pass">✅</td></tr>
+      </tbody>
+    </table>
+    <p><strong>PA-B: 4/7 PASS, 3 FAIL</strong> → loại.</p>
+  </div>
+
+  <h3>Chú giải màu nhóm đồ (trên bản vẽ)</h3>
+  <div class="legend">
+    <span><i style="background:#cfe3f5;"></i>Ngủ (giường, tab)</span>
+    <span><i style="background:#e8dcc8;"></i>Lưu trữ (tủ áo)</span>
+    <span><i style="background:#d6e8d0;"></i>Ngồi / làm việc / cây</span>
+    <span><i style="background:#f2e4ef;"></i>Decor / đèn</span>
+  </div>
+
+  <h3>Lý do bố trí chính (PA-A) — checklist định tính</h3>
+  <ol>
+    <li>Đầu giường tựa tường W đặc (không cửa sổ, không giáp WC) — ngủ kín gió, đạt PN-05; hai bên giường đều ≥110/130 cho 2 vợ chồng.</li>
+    <li>Bàn làm việc góc NE cạnh cửa sổ Đông Nam: sáng tự nhiên buổi sáng, tối làm việc không quay lưng ra cửa.</li>
+    <li>Tủ lùa (không cánh mở) đặt tường E: tiết kiệm khoảng mở cánh ở phòng hẹp, chừa khe 3cm vì tường giáp WC.</li>
+    <li>Đèn sàn + tranh dựa + thảm: zero khoan tường, đúng ràng buộc nhà thuê.</li>
+  </ol>
+
+  <h3>Ghi chú thi công</h3>
+  <ul>
+    <li><strong>Tủ lùa 180×65×220 đặt đóng dạng đứng rời (freestanding)</strong>, KHÔNG bắt vít vào tường — mang đi được khi trả nhà; đo lại thực tế khe tường E trước khi đặt.</li>
+    <li>Khung giường chọn loại phẳng không viền để giữ đúng footprint 200×160.</li>
+    <li>Xác nhận vị trí ổ điện trước khi chốt mép bàn làm việc (brief còn thiếu thông tin này).</li>
+  </ul>
+</section>
+
+<!-- ============ 4. RENDER PROMPTS ============ -->
+<section id="sec-render">
+  <h2>Render Prompts — minh hoạ cảm giác không gian</h2>
+  <p class="muted">⚠️ Ảnh sinh ra chỉ minh hoạ <strong>cảm giác</strong> không gian, KHÔNG phải bản vẽ kỹ thuật —
+  kích thước/vị trí chính xác lấy theo <code>03-layout.svg</code>/<code>03-layout.md</code>.
+  Iterate: giữ nguyên scene facts, mỗi lần chỉ đổi seed HOẶC thêm/bớt 1 fact; ảnh lệch bố cục → tăng trọng số fact đó lên đầu prompt (SDXL: thêm lỗi vào negative).</p>
+
+  <div class="card">
+    <h3>Prompt 1 — Tổng thể (từ cửa nhìn vào)</h3>
+    <p class="muted">Đứng ở cửa nhìn về cửa sổ, thấy giường bên trái, tủ lùa bên phải, góc làm việc cuối phòng phải.</p>
+    <p><strong>Midjourney v6</strong> (prompt chính):</p>
+    <pre id="prompt-1">interior photography, japandi master bedroom 14 sqm, view from the doorway toward a 140cm window, low smoked-ash platform bed with oatmeal linen bedding against the left wall, washi paper floor lamp at the bed head, handle-less wooden sliding wardrobe on the right wall, slim wooden desk with dark ergonomic chair in the far right corner by the window, large plant in rough ceramic pot, warm beige walls #EAE3D9, greige textiles, muted sage green pillows #56655A, soft morning daylight through canvas and sheer curtains, wide angle 24mm, eye level, photorealistic, high detail --ar 4:3 --style raw --v 6</pre>
+    <button type="button" class="copy-btn" onclick="copyPrompt('prompt-1', this)">Copy</button>
+    <details>
+      <summary>Biến thể DALL-E 3 / SDXL</summary>
+      <p><strong>DALL-E 3:</strong></p>
+      <pre>A photorealistic interior photo taken from the doorway of a compact 14-square-meter Japandi master bedroom with a 2.7-meter ceiling. On the left wall stands a low smoked-ash platform bed (160×200) dressed in oatmeal linen, flanked by two small wooden nightstands and a glowing washi paper floor lamp at its head. Along the right wall runs a flat, handle-less wooden sliding-door wardrobe, and in the far right corner a slim wooden desk with a dark ergonomic chair sits beside a 140 cm window letting in soft southeast morning light through layered canvas and sheer curtains. Walls are warm beige (#EAE3D9), textiles are greige and sand, with muted sage-green accent pillows and a rough ceramic plant pot. The room feels calm, low, and uncluttered, shot at eye level with a 24 mm wide-angle lens.</pre>
+      <p><strong>SDXL:</strong></p>
+      <pre>japandi bedroom, 14sqm, view from doorway, low ash wood platform bed left wall, oatmeal linen bedding, washi paper floor lamp, sliding door wooden wardrobe right wall, slim wood desk by window far corner, dark ergonomic chair, large potted plant ceramic pot, warm beige walls, greige textiles, sage green accent pillows, canvas curtains, morning light, 24mm wide angle, photorealistic, interior magazine, 8k</pre>
+      <p><strong>Negative:</strong></p>
+      <pre>blurry, distorted walls, warped furniture, extra windows, extra doors, lowres, watermark, text, people</pre>
+    </details>
+  </div>
+
+  <div class="card">
+    <h3>Prompt 2 — Góc hero (cụm giường)</h3>
+    <p class="muted">Máy đặt phía góc làm việc nhìn về giường; nắng cửa sổ hắt từ bên phải khung hình.</p>
+    <p><strong>Midjourney v6</strong> (prompt chính):</p>
+    <pre id="prompt-2">interior photography, japandi bedroom hero shot of a low smoked-ash platform bed 160x200 with headboard against a warm beige wall #EAE3D9, oatmeal linen duvet, muted sage green #56655A accent pillows, two small wooden nightstands, glowing washi paper floor lamp beside the headboard, woven beige rug under the foot of the bed, window light falling from the right side of frame, rattan tray and rough ceramic vase with a dry branch on the nightstand, wide angle 24mm, photorealistic, soft shadows --ar 4:3 --style raw --v 6</pre>
+    <button type="button" class="copy-btn" onclick="copyPrompt('prompt-2', this)">Copy</button>
+    <details>
+      <summary>Biến thể DALL-E 3 / SDXL</summary>
+      <p><strong>DALL-E 3:</strong></p>
+      <pre>A photorealistic close interior shot of the bed area in a Japandi bedroom. A low smoked-ash platform bed (160×200) with its headboard against a warm beige wall is dressed in oatmeal linen with two muted sage-green pillows. Small matching wooden nightstands sit at each side; a washi paper floor lamp glows softly beside the headboard, and a rough ceramic vase holding a dry branch rests on one nightstand. A woven beige rug lies under the foot of the bed. Daylight from a window on the right side of the frame casts soft shadows across the linen.</pre>
+      <p><strong>SDXL:</strong></p>
+      <pre>japandi bed closeup, low ash platform bed, oatmeal linen duvet, sage green pillows, beige wall, wooden nightstands, washi paper floor lamp, ceramic vase dry branch, woven rug, soft window light from right, photorealistic, cozy minimal, 8k</pre>
+      <p><strong>Negative:</strong></p>
+      <pre>blurry, distorted walls, warped furniture, extra windows, extra doors, lowres, watermark, text, people</pre>
+    </details>
+  </div>
+
+  <div class="card">
+    <h3>Prompt 3 — Chi tiết vật liệu (close-up)</h3>
+    <p class="muted">Cận cảnh góc giường — linen, gỗ tần bì hun khói, gốm thô, mây tre.</p>
+    <p><strong>Midjourney v6</strong> (prompt chính):</p>
+    <pre id="prompt-3">macro interior detail shot, japandi material palette, crumpled oatmeal linen bedding over a smoked ash wood bed frame edge, muted sage green #56655A cushion, rough unglazed ceramic vase, rattan tray, warm beige wall #EAE3D9 background softly out of focus, natural daylight, shallow depth of field 50mm f1.8, photorealistic texture --ar 4:3 --style raw --v 6</pre>
+    <button type="button" class="copy-btn" onclick="copyPrompt('prompt-3', this)">Copy</button>
+    <details>
+      <summary>Biến thể DALL-E 3 / SDXL</summary>
+      <p><strong>DALL-E 3:</strong></p>
+      <pre>An extreme close-up photograph of materials in a Japandi bedroom: crumpled oatmeal linen bedding draped over the edge of a smoked-ash wooden bed frame, a muted sage-green cushion, a rough unglazed ceramic vase and a small rattan tray. The warm beige wall behind is softly blurred. Natural daylight reveals fabric weave and wood grain, shot at 50 mm with shallow depth of field.</pre>
+      <p><strong>SDXL:</strong></p>
+      <pre>closeup texture shot, oatmeal linen fabric, smoked ash wood grain, sage green cushion, raw ceramic vase, rattan tray, beige wall bokeh, natural light, 50mm f1.8, ultra detailed texture, photorealistic</pre>
+      <p><strong>Negative:</strong></p>
+      <pre>blurry, distorted walls, warped furniture, extra windows, extra doors, lowres, watermark, text, people</pre>
+    </details>
+  </div>
+
+  <div class="card">
+    <h3>Prompt 4 (tuỳ chọn) — Ban đêm, đèn nhân tạo</h3>
+    <p class="muted">Cảnh đọc sách buổi tối — đèn washi là nguồn sáng chính, góc làm việc sáng đèn bàn.</p>
+    <p><strong>Midjourney v6</strong> (prompt chính):</p>
+    <pre id="prompt-4">night interior photography, japandi bedroom lit only by a glowing washi paper floor lamp beside a low platform bed and a small warm desk lamp on a wooden desk in the far corner, oatmeal linen bedding, open book on the duvet, warm 2700K pools of light, beige walls fading into shadow, sage green pillow, curtains closed, cozy quiet reading mood, wide angle 24mm, photorealistic --ar 4:3 --style raw --v 6</pre>
+    <button type="button" class="copy-btn" onclick="copyPrompt('prompt-4', this)">Copy</button>
+    <details>
+      <summary>Biến thể DALL-E 3 / SDXL</summary>
+      <p><strong>DALL-E 3:</strong></p>
+      <pre>A photorealistic night-time photo of a Japandi bedroom lit only by two warm light sources: a washi paper floor lamp glowing beside a low wooden platform bed with an open book on its oatmeal linen duvet, and a small desk lamp on a slim wooden desk in the far corner. The warm beige walls fade into soft shadow, canvas curtains are drawn, and a muted sage-green pillow catches the lamplight. The mood is quiet and made for reading before sleep.</pre>
+      <p><strong>SDXL:</strong></p>
+      <pre>japandi bedroom at night, washi paper floor lamp glow, warm desk lamp far corner, low platform bed, open book on linen duvet, 2700K warm light, dark beige walls, closed canvas curtains, cozy reading mood, photorealistic, cinematic low light</pre>
+      <p><strong>Negative:</strong></p>
+      <pre>blurry, distorted walls, warped furniture, extra windows, extra doors, lowres, watermark, text, people, harsh light</pre>
+    </details>
+  </div>
+</section>
+
+<!-- ============ 5. DỰ TOÁN ============ -->
+<section id="sec-budget">
+  <h2>Dự toán &amp; Kế hoạch mua sắm</h2>
+  <p class="muted">Bóc từ danh sách đồ <code>03-layout.md</code> (PA-A); loại <code>keep_items</code> (nệm 1m6 đã có).
+  Scope <code>do-roi</code> → KHÔNG có hạng mục hoàn thiện. Khoảng giá theo <code>price-ranges-vn.md</code> (tham khảo 2025–2026).</p>
+
+  <h3>Bảng dự toán (phân khúc mặc định: đồ chạm hằng ngày → TC; decor → BD)</h3>
+  <table>
+    <thead><tr><th>#</th><th>Hạng mục</th><th>Kích thước</th><th>Phân khúc</th><th>Khoảng giá (tr)</th><th>Ưu tiên</th><th>Nguồn mua gợi ý</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Khung giường 1m6 + đầu giường (kiểu Nhật thấp)</td><td>160×200</td><td>TC</td><td>6 – 12</td><td>Must</td><td>xưởng đặt / MOHO / BEYOURs</td></tr>
+      <tr><td>2</td><td>Tủ quần áo cánh lùa, đứng rời</td><td>180×65×220 (mặt cánh 1.8×2.2 = 3.96 m² × 2.8–3.8/m²)</td><td>TC</td><td>11.1 – 15.0</td><td>Must</td><td>xưởng đặt uy tín (KHÔNG bắt tường — nhà thuê)</td></tr>
+      <tr><td>3</td><td>Bàn làm việc gỗ</td><td>120×60×75</td><td>TC</td><td>3 – 6</td><td>Must</td><td>MOHO / BEYOURs / IKEA xách tay</td></tr>
+      <tr><td>4</td><td>Ghế công thái học</td><td>60×60</td><td>TC</td><td>4 – 8</td><td>Must</td><td>hãng ghế công thái học VN</td></tr>
+      <tr><td>5</td><td>Rèm 2 lớp vải bố + voan (1 cửa sổ 140)</td><td>bộ</td><td>TC</td><td>2.5 – 5</td><td>Must</td><td>tiệm rèm may đo (xác nhận giải pháp treo với chủ nhà)</td></tr>
+      <tr><td>6</td><td>Tab đầu giường × 2</td><td>45×40×50</td><td>TC</td><td>3 – 6 (1.5–3/cái)</td><td>Nên</td><td>đặt cùng xưởng giường cho đồng bộ gỗ</td></tr>
+      <tr><td>7</td><td>Đèn sàn giấy washi (đọc sách)</td><td>Ø30, cao ~150</td><td>TC</td><td>2 – 4</td><td>Nên</td><td>shop đèn decor (giá theo bảng &quot;Đèn sàn&quot; phòng khách)</td></tr>
+      <tr><td>8</td><td>Thảm dệt 160×230</td><td>160×230</td><td>BD</td><td>1 – 2.5 (ước)</td><td>Sau</td><td>Shopee/Lazada, BAYA (bảng phòng khách)</td></tr>
+      <tr><td>9</td><td>Cây xanh + chậu gốm thô</td><td>Ø45</td><td>—</td><td>0.5 – 1.5 (ước)</td><td>Sau</td><td>vườn cây/gốm — không có trong references</td></tr>
+      <tr><td>10</td><td>Decor: tranh dựa sàn, gối tựa xanh rêu #56655A, bình gốm</td><td>—</td><td>BD</td><td>1 – 3 (ước)</td><td>Sau</td><td>chợ decor, Shopee</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Tổng theo nhóm ưu tiên</h3>
+  <table>
+    <thead><tr><th>Nhóm</th><th>Min (tr)</th><th>Max (tr)</th></tr></thead>
+    <tbody>
+      <tr><td>Must (1–5)</td><td>26.6</td><td>46.0</td></tr>
+      <tr><td>Nên (6–7)</td><td>5.0</td><td>10.0</td></tr>
+      <tr><td>Sau (8–10)</td><td>2.5</td><td>7.0</td></tr>
+      <tr><td><strong>Cộng đồ rời</strong></td><td><strong>34.1</strong></td><td><strong>63.0</strong></td></tr>
+      <tr><td>Vận chuyển + lắp đặt (3–5% đồ rời)</td><td>1.0</td><td>3.2</td></tr>
+      <tr><td><strong>Tạm tính</strong></td><td><strong>35.1</strong></td><td><strong>66.2</strong></td></tr>
+      <tr><td>Dự phòng phát sinh (10–15% tạm tính)</td><td>3.5</td><td>9.9</td></tr>
+      <tr class="total"><td>TỔNG DỰ TOÁN</td><td>38.6</td><td>76.1</td></tr>
+    </tbody>
+  </table>
+
+  <div class="banner vuot">
+    <strong>So với ngân sách 50 triệu:</strong> tổng <strong>38.6 – 76.1 tr</strong> vs 50 tr →
+    cận dưới <strong>ĐẠT</strong>, cận trên <strong>VƯỢT 26.1 tr</strong> — mua toàn bộ ở phân khúc TC chỉ an toàn
+    nếu mọi món chốt được gần giá sàn.<br>
+    <strong>Tóm tắt phương án cắt — khuyến nghị chọn (a):</strong> hạ giường/tủ/bàn/tab/đèn/rèm xuống BD,
+    <em>giữ ghế công thái học TC</em> (ngồi làm việc hằng đêm) → <strong>TỔNG (a) 23.1 – 45.8 tr ✅ ≤ 50</strong>.
+    Phương án (b) — giữ TC, hoãn toàn bộ nhóm Sau → TỔNG (b) 35.8 – 67.6 tr ❌ max vẫn vượt 17.6;
+    hoặc (b) kết hợp hạ giường + bàn + rèm xuống BD (tổng ~27.8 – 51.3, max xấp xỉ ngân sách).
+    Khoản dư của (a) (~4–27 tr) để nâng nệm sau này hoặc nâng tủ lên TC nếu báo giá xưởng tốt.
+  </div>
+
+  <details>
+    <summary>Chi tiết 2 phương án cắt (a) / (b)</summary>
+    <p><strong>Phương án (a) — hạ phân khúc, giữ trải nghiệm ngồi</strong> (hạ giường/tủ/bàn/tab/đèn/rèm xuống BD; GIỮ ghế công thái học TC vì ngồi làm việc hằng đêm):</p>
+    <table>
+      <thead><tr><th>Nhóm</th><th>Min</th><th>Max</th></tr></thead>
+      <tbody>
+        <tr><td>Must: giường BD 2.5–5 · tủ BD (2–2.5/m²) 7.9–9.9 · bàn BD 1–2.5 · ghế TC 4–8 · rèm BD 1–2</td><td>16.4</td><td>27.4</td></tr>
+        <tr><td>Nên BD: tab 1–2 · đèn 0.5–1.5</td><td>1.5</td><td>3.5</td></tr>
+        <tr><td>Sau</td><td>2.5</td><td>7.0</td></tr>
+        <tr><td>Đồ rời 20.4–37.9 + v/c 0.6–1.9 + dự phòng 2.1–6.0</td><td></td><td></td></tr>
+        <tr class="total"><td>TỔNG (a)</td><td>23.1</td><td>45.8 ✅ ≤ 50</td></tr>
+      </tbody>
+    </table>
+    <p><strong>Phương án (b) — giữ TC, hoãn toàn bộ nhóm <code>Sau</code></strong> (thảm, cây, decor mua dần sau):</p>
+    <table>
+      <thead><tr><th></th><th>Min</th><th>Max</th></tr></thead>
+      <tbody>
+        <tr><td>Must + Nên (TC) 31.6–56.0 + v/c 0.9–2.8 + dự phòng 3.3–8.8</td><td></td><td></td></tr>
+        <tr class="total"><td>TỔNG (b)</td><td>35.8</td><td>67.6 ❌ max vẫn vượt 17.6</td></tr>
+      </tbody>
+    </table>
+  </details>
+
+  <div class="warn">⚠️ <strong>Giá trên là khoảng tham khảo 2025–2026 — bắt buộc kiểm tra giá thực tế (báo giá xưởng, giá sale)
+  trước khi chốt mua.</strong> Món #2 tính theo đơn giá m² mặt cánh tủ đặt đóng; món #7, #8 mượn khoảng giá bảng phòng khách;
+  #9, #10 là ước tính <code>(ước)</code> vì không có trong references.</div>
+
+  <h3>Checklist hành động</h3>
+
+  <details>
+    <summary>3.1 Đặt mua (theo lead time, mục tiêu xong trong 1 tháng)</summary>
+    <ul style="list-style:none; padding-left:0;">
+      <li>☐ <strong>Tuần 1 — đặt ngay đồ đóng (lead 2–4 tuần):</strong> tủ lùa 180×65×220 + khung giường + 2 tab (cùng xưởng). Khi đặt xác nhận: kích thước đúng layout, <strong>tủ đứng rời không bắt vít tường</strong>, khe lưng tủ 3cm, màu gỗ theo <code>#8A6F52</code>, mặt cánh <code>#CBC2B4</code>, khung giường phẳng không viền.</li>
+      <li>☐ Tuần 1: gọi tiệm rèm đo cửa sổ 140×140 bệ 90; xác nhận với chủ nhà cách treo (thanh có sẵn / vít nhẹ); vải bố <code>#A89F91</code> + voan.</li>
+      <li>☐ Tuần 2 — đồ may sẵn: ghế công thái học (ngồi thử trực tiếp), bàn làm việc 120×60, đèn sàn washi. Xác nhận: bàn không sâu quá 60 (đụng lối kéo ghế), đèn có dimmer càng tốt.</li>
+      <li>☐ Tuần 3–4 — nhóm <code>Sau</code> (nếu còn ngân sách): thảm 160×230 màu be, cây + chậu, gối xanh rêu <code>#56655A</code>, tranh dựa.</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>3.2 Nhận hàng &amp; lắp đặt</summary>
+    <ul style="list-style:none; padding-left:0;">
+      <li>☐ Kiểm từng món khi nhận: đúng kích thước đặt, không trầy xước, đủ phụ kiện/ray lùa/ốc.</li>
+      <li>☐ Thứ tự lắp (scope đồ rời, không sơn/sàn): <strong>đồ lớn trước theo layout</strong> — tủ lùa vào vị trí (282,145) chừa khe 3cm tường E → giường (0,130) + tab (0,85)/(0,290) → bàn (225,0) + ghế → rèm → đèn sàn (60,108) → thảm, cây (317,367), decor.</li>
+      <li>☐ Đặt đúng toạ độ trong <code>03-layout.md</code>; giữ lối chân giường ↔ tủ ≥ 82 cm.</li>
+    </ul>
+  </details>
+
+  <details>
+    <summary>3.3 Nghiệm thu</summary>
+    <ul style="list-style:none; padding-left:0;">
+      <li>☐ Đối chiếu từng món với <code>03-layout.svg</code> + bảng màu <code>02-concept.md</code>.</li>
+      <li>☐ Thử công năng: cánh tủ lùa chạy hết hành trình không vướng giường; cửa ra vào mở hết 90° không chạm tab S; kéo ghế ra 75 cm thoải mái; đèn sàn rọi tới gối đọc sách; rèm kéo kín cản nắng sớm Đông Nam.</li>
+      <li>☐ Đo lại lối đi thực tế đúng số bảng ergonomics (82 / 110 / 130); chụp ảnh từng góc lưu hồ sơ.</li>
+    </ul>
+  </details>
+</section>
+
+<!-- ============ 6. FOOTER ============ -->
+<footer>
+  <p><strong>Ngày xuất:</strong> 2026-06-12 · Xuất bởi bước 6 (Presentation) — <code>/interior-present</code>.</p>
+  <p>Ghi chú: <em>giá là khoảng tham khảo, ảnh render là minh hoạ cảm giác</em> — số liệu chuẩn lấy theo file nguồn.</p>
+  <p>File nguồn trong <code>designs/phong-ngu-mau/</code>:
+    <code>00-project.yaml</code> · <code>01-brief.md</code> · <code>02-concept.md</code> ·
+    <code>03-layout.md</code> · <code>03-layout.svg</code> · <code>03-layout-A.svg</code> · <code>03-layout-B.svg</code> ·
+    <code>04-render-prompts.md</code> · <code>05-du-toan.md</code></p>
+  <p>⚠️ Khi artifact nguồn thay đổi (layout sửa, dự toán cập nhật), trang này phải được <strong>sinh lại</strong>
+  bằng <code>/interior-present</code> để số liệu khớp hồ sơ. In/chia sẻ: nhấn Ctrl/Cmd+P để xuất PDF.</p>
+</footer>
+
+</main>
+
+<script>
+function showPlan(which){
+  var a = document.getElementById('plan-A');
+  var b = document.getElementById('plan-B');
+  var btnA = document.getElementById('btn-A');
+  var btnB = document.getElementById('btn-B');
+  var isA = (which === 'A');
+  a.hidden = !isA;
+  b.hidden = isA;
+  btnA.classList.toggle('active', isA);
+  btnB.classList.toggle('active', !isA);
+}
+
+function copyPrompt(id, btn){
+  var text = document.getElementById(id).textContent;
+  function done(){
+    var old = btn.textContent;
+    btn.textContent = 'Đã copy ✓';
+    setTimeout(function(){ btn.textContent = old; }, 1500);
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done, function(){ fallbackCopy(text, done); });
+  } else {
+    fallbackCopy(text, done);
+  }
+}
+
+function fallbackCopy(text, done){
+  var ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); } catch(e){}
+  document.body.removeChild(ta);
+  done();
+}
+</script>
+</body>
+</html>
