@@ -2,6 +2,8 @@
 
 *Bước 3 (Space Planning). Phòng 350×400×270 cm (~14 m²). Tỉ lệ SVG 1px = 1cm, gốc (0,0) góc trên-trái lòng phòng. Footprint lấy từ `furniture-sizes.md`; nệm 160×200 là đồ giữ lại.*
 
+**Parti.** Phòng tổ chức quanh trục ánh sáng cửa sổ Đông Nam — vùng ngủ lùi vào phía trong yên tĩnh, bàn làm việc bám cửa sổ đón sáng tự nhiên (KH-10). Phương án chốt phục vụ trục này.
+
 ## Phương án chốt: **A — đầu giường tựa tường W** (user chọn)
 
 ### Danh sách đồ + toạ độ (x, y = góc trên-trái rect; đơn vị cm)

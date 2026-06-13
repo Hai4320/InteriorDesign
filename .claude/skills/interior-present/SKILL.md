@@ -12,7 +12,7 @@ Bạn là designer làm bước Presentation. Mục tiêu: một file HTML tự 
 
 ## Prerequisite
 
-Đọc toàn bộ `designs/<slug>/`. **Tối thiểu cần brief + concept + layout `done`** — thiếu thì dừng, báo chạy bước còn thiếu. Render/dự toán chưa có: vẫn làm, bỏ section tương ứng và ghi chú "chưa thực hiện" kèm lệnh skill để bổ sung.
+Đọc toàn bộ `designs/<slug>/`. **Tối thiểu cần brief + concept + layout `done`** — thiếu thì dừng, báo chạy bước còn thiếu. Validate `00-project.yaml` theo `../interior/references/schema.md` trước khi chạy. Render/dự toán chưa có: vẫn làm, bỏ section tương ứng và ghi chú "chưa thực hiện" kèm lệnh skill để bổ sung.
 
 ## Yêu cầu kỹ thuật file HTML
 
@@ -27,7 +27,7 @@ Bạn là designer làm bước Presentation. Mục tiêu: một file HTML tự 
 2. **Concept**: mô tả cảm xúc; **palette swatches** — mỗi màu một ô lớn (≥80px) màu thật kèm mã hex + vai trò (nền 60% / phụ 30% / nhấn 10% / vật liệu); danh sách vật liệu + key items; moodboard keywords (mỗi keyword một chip, kèm ghi chú "tìm trên Pinterest").
 3. **Layout**: SVG phương án chốt nhúng **inline** (copy `<svg>` từ `03-layout.svg`, bỏ XML prolog nếu có); nếu tồn tại cả `03-layout-A.svg`/`-B.svg` thì thêm nút toggle A/B (JS ẩn/hiện, đánh dấu phương án chốt) — **khi nhúng nhiều SVG, đổi tên mọi `id` trùng nhau trong `<defs>`/pattern (hậu tố `-A`/`-B`) và sửa `url(#...)` tương ứng**, mỗi phương án kèm bảng ergonomics riêng của nó; dưới SVG: bảng ergonomics pass/fail, phần định tính = các mục "Lý do bố trí" + "Ghi chú thi công" + mọi cảnh báo ⚠️ trong `03-layout.md`; chú giải màu nhóm đồ.
 4. **Render prompts** (nếu có): mỗi góc máy một card — tên góc, prompt chính (= biến thể đầu tiên trong file nguồn, thường Midjourney) trong `<pre>` + nút "Copy" (`navigator.clipboard.writeText`, fallback `execCommand` cho `file://`), các biến thể còn lại thu gọn trong `<details>`.
-5. **Dự toán** (nếu có): bảng hạng mục y theo `05-du-toan.md`; dòng tổng min–max in đậm; banner so ngân sách 3 trạng thái — max ≤ ngân sách: nền xanh nhạt; min ≤ ngân sách < max: nền vàng nhạt, ghi cả hai vế + chênh cận trên; min > ngân sách: nền đỏ nhạt + số chênh; kèm tóm tắt phương án cắt nếu có; 3 checklist hành động trong `<details>`.
+5. **Dự toán** (nếu có): bảng hạng mục y theo `05-budget.md`; dòng tổng min–max in đậm; banner so ngân sách 3 trạng thái — max ≤ ngân sách: nền xanh nhạt; min ≤ ngân sách < max: nền vàng nhạt, ghi cả hai vế + chênh cận trên; min > ngân sách: nền đỏ nhạt + số chênh; kèm tóm tắt phương án cắt nếu có; 3 checklist hành động trong `<details>`.
 6. **Footer**: ngày xuất board (ngày chạy skill), ghi chú "giá là khoảng tham khảo, ảnh render là minh hoạ cảm giác", đường dẫn các file nguồn trong `designs/<slug>/`.
 
 ## Quy trình
@@ -37,6 +37,10 @@ Bạn là designer làm bước Presentation. Mục tiêu: một file HTML tự 
 3. Viết `designs/<slug>/06-presentation.html`.
 4. Cập nhật `status.present: done` trong `00-project.yaml` (thêm key nếu chưa có).
 5. Báo user mở file trong browser; nhắc Ctrl/Cmd+P để xuất PDF share.
+
+## Gate trước khi set `status.present: done`
+
+Chạy `python3 .claude/skills/interior/scripts/check_project.py designs/<slug>/` để chắc nguồn nhất quán trước khi gộp. Tự kiểm: số liệu trên board (palette hex, tổng dự toán, kết quả ergonomics, kích thước phòng) khớp 100% file nguồn; SVG nhúng không vỡ. Phát hiện discrepancy → báo user sửa NGUỒN, không "vá" trong HTML.
 
 ## Nguyên tắc
 

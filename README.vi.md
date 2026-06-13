@@ -38,7 +38,7 @@ Skill nằm trong `.claude/skills/` nên Claude Code tự nhận khi mở projec
 | 2 | `/interior-concept` | Đề xuất 2–3 concept (phong cách, bảng màu, vật liệu), bạn chọn | `02-concept.md` |
 | 3 | `/interior-layout` | Vẽ floor plan SVG đúng tỉ lệ + kiểm tra ergonomics tự động | `03-layout.svg`, `03-layout.md` |
 | 4 | `/interior-render` | Sinh prompt ảnh phối cảnh cho Midjourney / DALL-E / SDXL | `04-render-prompts.md` |
-| 5 | `/interior-budget` | Dự toán theo giá VN, shopping list, checklist mua–lắp–nghiệm thu | `05-du-toan.md` |
+| 5 | `/interior-budget` | Dự toán theo giá VN, shopping list, checklist mua–lắp–nghiệm thu | `05-budget.md` |
 | 6 | `/interior-present` | (tuỳ chọn) Gộp tất cả thành design board HTML để xem/in/share | `06-presentation.html` |
 
 Thứ tự bắt buộc: brief → concept → layout. Render và dự toán cần layout, làm trước sau tuỳ ý. Mỗi skill tự kiểm tra prerequisite — gọi sai thứ tự sẽ được chỉ về bước đúng.

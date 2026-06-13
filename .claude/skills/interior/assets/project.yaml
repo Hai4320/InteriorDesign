@@ -9,7 +9,7 @@ status:                           # mỗi bước cập nhật khi xong: pending
   concept: pending
   layout: pending
   render: pending
-  dutoan: pending
+  budget: pending
   present: pending
 room:
   width_cm: <int>                 # cạnh ngang (tường N/S)

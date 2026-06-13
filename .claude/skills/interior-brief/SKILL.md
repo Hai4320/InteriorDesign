@@ -37,63 +37,21 @@ Hướng dẫn user đo và khai báo (chấp nhận số gần đúng, ghi rõ 
 - Hướng nắng (cửa sổ quay hướng nào), tường nào dính nhà vệ sinh/bếp (ẩm, ống nước)
 - Vị trí ổ điện, công tắc, điều hoà, cục nóng, hộp kỹ thuật (nếu biết)
 
-Quy ước toạ độ để bước layout dùng: gốc (0,0) là góc trên-trái của bản vẽ nhìn từ trên xuống, trục x sang phải, y xuống dưới; tường đặt tên N/E/S/W (N = cạnh trên bản vẽ). **N/E/S/W chỉ là tên toạ độ vẽ, không phải hướng la bàn** — hướng nắng thật ghi riêng vào `room.sun`. `offset_cm` của cửa/cửa sổ luôn đo theo **chiều tăng trục toạ độ** (x cho tường N/S, y cho tường E/W). `swing` của cửa: `in/out` + phía bản lề, trong đó `left` = bản lề ở đầu offset nhỏ, `right` = bản lề ở đầu offset lớn.
+Quy ước toạ độ (gốc, trục, N/E/S/W, `offset_cm`, `swing`, `room.sun`): **theo `../interior/references/schema.md` §0–1** — đọc và giải thích cho user đúng theo đó, không định nghĩa lại ở đây.
 
 ### 4. Ghi hồ sơ
 
-Tạo `designs/<slug>/00-project.yaml` theo template (**mọi giá trị dưới đây là VÍ DỤ minh hoạ — điền số liệu thật của user, không copy nguyên**):
+Tạo `designs/<slug>/00-project.yaml` **đúng schema** (`../interior/references/schema.md` §3 — định nghĩa từng trường, R/O, enum, đơn vị). Dùng template khung sẵn `../interior/assets/project.yaml` (mọi giá trị trong đó là placeholder/ví dụ — điền số liệu thật, không copy nguyên).
 
-```yaml
-project:
-  slug: phong-ngu-master
-  type: phong-ngu        # phong-khach | phong-ngu | bep-an | phong-tam | khac
-  created: 2026-06-12
-status:                  # cập nhật bởi từng skill khi xong
-  brief: done
-  concept: pending       # pending | done
-  layout: pending
-  render: pending
-  dutoan: pending
-  present: pending       # tuỳ chọn — design board HTML
-room:
-  width_cm: 350          # cạnh ngang bản vẽ (tường N/S)
-  depth_cm: 400          # cạnh dọc bản vẽ (tường E/W)
-  height_cm: 270
-  doors:
-    - wall: S
-      offset_cm: 20      # cách góc trái/trên của tường đó
-      width_cm: 80
-      swing: in-left     # in/out + left/right
-  windows:
-    - wall: N
-      offset_cm: 100
-      width_cm: 140
-      height_cm: 140
-      sill_cm: 90
-  sun: dong-nam          # hướng LA BÀN thật của cửa sổ chính (không phải N/E/S/W bản vẽ)
-  notes: ["tường E giáp WC, có hộp kỹ thuật góc NE"]
-budget:
-  total_trieu: 50
-  scope: do-roi          # do-roi | do-roi-va-hoan-thien
-  timeline: "1 thang"
-users: "vợ chồng 30 tuổi, làm việc tối tại phòng"
-pain_points: ["thiếu chỗ cất đồ", "đèn trần chói khi đọc sách"]
-style_hints:
-  like: [scandinavian, japandi]
-  dislike: [neo-classic]
-  colors_like: [be, xanh]
-  colors_dislike: [do]
-keep_items:
-  - {name: "nệm 1m6", w: 160, d: 200}
-constraints: ["nhà thuê - hạn chế khoan tường"]
-concept: null            # interior-concept ghi vào sau khi chốt
-```
-
-Trường nào user không biết: ghi `null` kèm note, đừng bịa.
+Trường nào user không biết: ghi `null` kèm note, **không bịa số** (schema §0).
 
 Tạo `designs/<slug>/01-brief.md`: văn bản tóm tắt dễ đọc — chân dung người dùng, nhu cầu xếp hạng ưu tiên, ngân sách & phạm vi, gu thẩm mỹ, hiện trạng & ràng buộc, danh sách số đo. Cuối file: mục "Điểm cần làm rõ" nếu còn thiếu thông tin.
 
-### 5. Kết thúc
+### 5. Gate trước khi set `status.brief: done`
+
+Chạy `python3 .claude/skills/interior/scripts/check_project.py designs/<slug>/` để validate `00-project.yaml` theo schema (kiểu trường, enum, cửa nằm trong tường). Có ❌ FAIL → sửa cùng user trước khi set done (lỗi cú pháp YAML thuần thì tự sửa nhưng báo). Trường thiếu hợp lệ vì user chưa biết → để `null` + note, không tính FAIL.
+
+### 6. Kết thúc
 
 Cập nhật `status.brief: done`. Tóm tắt 5–6 dòng cho user và mời chạy bước kế: `/interior-concept`.
 

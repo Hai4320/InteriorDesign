@@ -32,7 +32,7 @@ Browse the complete sample dossier in [`designs/phong-ngu-mau/`](designs/phong-n
 | 2 | `/interior-concept` | Proposes 2–3 deliberately contrasting concepts (style, palette, materials) — you pick | `02-concept.md` |
 | 3 | `/interior-layout` | Draws a to-scale SVG floor plan, validates ~20 ergonomic rules from real coordinates | `03-layout.svg`, `03-layout.md` |
 | 4 | `/interior-render` | Generates scene-accurate image prompts for Midjourney / DALL-E / SDXL | `04-render-prompts.md` |
-| 5 | `/interior-budget` | Builds a budget with Vietnam price ranges, shopping list, install & inspection checklists | `05-du-toan.md` |
+| 5 | `/interior-budget` | Builds a budget with Vietnam price ranges, shopping list, install & inspection checklists | `05-budget.md` |
 | 6 | `/interior-present` | *(optional)* Compiles everything into a single self-contained HTML design board | `06-presentation.html` |
 
 Hard ordering: brief → concept → layout. Every skill checks its prerequisites — call them in any order and you'll be routed to the right step. Each room is a folder under `designs/`; design a whole home by running the pipeline per room.

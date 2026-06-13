@@ -58,7 +58,7 @@ status:                  R  — mỗi bước cập nhật khi xong; enum: pendi
   concept       R  enum
   layout        R  enum
   render        R  enum
-  dutoan        R  enum
+  budget        R  enum
   present       R  enum
 room:                    R
   width_cm      R  int   cạnh ngang (tường N/S)
@@ -110,7 +110,7 @@ concept:        O  obj | null   interior-concept ghi sau khi chốt:
 | `02-concept.md` | concept | brief |
 | `03-layout-A.svg` / `-B.svg` / `03-layout.svg` / `03-layout.md` | layout | brief (+ concept) |
 | `04-render-prompts.md` | render | concept (+ layout) |
-| `05-du-toan.md` | budget | layout |
+| `05-budget.md` | budget | layout |
 | `06-presentation.html` | present | brief + concept + layout |
 
 ## 5. Nhóm màu fill đồ trong SVG layout
@@ -128,7 +128,7 @@ Mỗi nhóm một fill nhạt nhất quán giữa các phương án: **ngủ** /
 ## 7. Bất biến phải đúng xuyên artifact *(script ② kiểm)*
 
 1. Mọi hex trong `02-concept.md` == `concept.palette` trong yaml (từng ký tự).
-2. Danh sách đồ trong `05-du-toan.md` (trừ `keep_items`) ⊆ danh sách đồ trong `03-layout.md`.
+2. Danh sách đồ trong `05-budget.md` (trừ `keep_items`) ⊆ danh sách đồ trong `03-layout.md`.
 3. Tổng cộng dự toán = đúng tổng số học các dòng.
 4. Mọi `rect` đồ khối trong SVG: không chồng nhau (thảm/lớp mềm ngoại lệ), không lọt ngoài phòng, không đè khe cửa/cung quét.
 5. Tỉ lệ SVG 1px=1cm; kích thước phòng trong SVG == `room.width_cm`/`depth_cm`.

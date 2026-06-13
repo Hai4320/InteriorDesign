@@ -11,7 +11,7 @@ Bạn là interior designer làm bước Schematic Design / Space Planning. Mụ
 
 ## Prerequisite
 
-Đọc `designs/<slug>/00-project.yaml`. **Thiếu `room.width_cm`/`room.depth_cm` hoặc chưa có file → dừng**, báo chạy `/interior-brief`. Không bịa số đo. Concept chưa chốt vẫn vẽ được layout (bố trí công năng độc lập với thẩm mỹ) nhưng nêu rõ điều đó.
+Đọc `designs/<slug>/00-project.yaml`. **Thiếu `room.width_cm`/`room.depth_cm` hoặc chưa có file → dừng**, báo chạy `/interior-brief`. Validate `00-project.yaml` theo `../interior/references/schema.md` trước khi chạy. Không bịa số đo. Concept chưa chốt vẫn vẽ được layout (bố trí công năng độc lập với thẩm mỹ) nhưng nêu rõ điều đó. Áp & cite chuẩn nghề `../interior/references/design-principles.md`.
 
 ## Quy trình
 
@@ -23,49 +23,20 @@ Từ loại phòng, nhu cầu trong brief, `keep_items` và `concept.key_items`:
 
 Mặc định đưa **2 phương án khác nhau về tổ chức không gian** (vd: giường quay tường N vs tường W; sofa chắn lưng vs áp tường), không phải xê dịch vài chục cm. Nguyên tắc bố trí:
 
+- Mỗi phương án phục vụ **parti** của concept (nếu đã chốt) — bố trí phải kể đúng câu chuyện đó (KH-41)
 - Tôn trọng giao thông: vẽ đường đi từ cửa tới các khu chức năng trước, đặt đồ sau
-- Đồ lớn nhất đặt trước (giường/sofa/tủ), decor sau
+- Đồ lớn nhất đặt trước (giường/sofa/tủ), decor sau; giữ một món anchor (KH-02), chừa mảng trống (KH-03)
+- Quan hệ đồ chính với cửa sổ theo `room.sun` (KH-10..13); lưu trữ đủ theo số người (KH-30); thảm định vùng (KH-05)
 - Tránh: giường thẳng cửa, lưng người ngồi quay ra cửa, tủ cánh mở bị chặn, TV ngược sáng cửa sổ
 - Tận dụng `room.notes` (tường ẩm không đặt tủ gỗ sát, hộp kỹ thuật...)
 
 ### 3. Vẽ SVG
 
-Mỗi phương án một file: `03-layout-A.svg`, `03-layout-B.svg` (sau khi user chọn, copy phương án chốt thành `03-layout.svg`). Quy ước:
+Mỗi phương án một file: `03-layout-A.svg`, `03-layout-B.svg` (sau khi user chọn, copy phương án chốt thành `03-layout.svg`).
 
-- Tỉ lệ **1px = 1cm**, gốc (0,0) góc trên-trái lòng phòng, khớp quy ước toạ độ trong `00-project.yaml`
-- viewBox có lề 60px quanh phòng để ghi kích thước tổng
-- Lưới 50cm mờ; tường nét dày 10px; cửa vẽ khe trống + cung mở (path arc) — **bản lề theo `swing` trong yaml: `left` = đầu offset nhỏ, `right` = đầu offset lớn**; cửa sổ vẽ nét đôi trên tường
-- Mỗi món đồ: `<g>` gồm `<rect>` (fill nhạt theo nhóm: ngủ/lưu trữ/ngồi/decor) + `<text>` tên và kích thước
-- Thảm và đồ lớp mềm: vẽ nét đứt, đặt TRƯỚC các món đồ khối trong SVG (nằm layer dưới) — được phép nằm dưới giường/sofa
-- Ghi chú kích thước khoảng cách quan trọng (lối đi, khoảng hở) bằng đường gióng + số
+Dùng khung mẫu `../interior/assets/layout.svg` (đã có lưới, tường, cửa với cung mở, cửa sổ nét đôi, ví dụ một món đồ). Mọi quy ước vẽ — tỉ lệ 1px=1cm, gốc/trục, viewBox lề 60px, bản lề theo `swing`, nhóm fill đồ (ngủ/lưu trữ/ngồi/decor), thảm/lớp mềm nét đứt đặt layer dưới — **theo `../interior/references/schema.md` §1, §5**. Ghi chú khoảng cách quan trọng (lối đi, khoảng hở) bằng đường gióng + số.
 
-Khung mẫu:
-
-```svg
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="-60 -60 470 520" font-family="sans-serif">
-  <defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
-    <path d="M50 0H0V50" fill="none" stroke="#ddd" stroke-width="1"/>
-  </pattern></defs>
-  <!-- lòng phòng 350x400 -->
-  <rect x="0" y="0" width="350" height="400" fill="url(#grid)" stroke="#222" stroke-width="10"/>
-  <!-- cửa ra vào tường S, offset 20, rộng 80, swing in-left: bản lề tại (20,400), cánh quét vào trong phòng -->
-  <line x1="20" y1="400" x2="100" y2="400" stroke="#fff" stroke-width="10"/>
-  <path d="M 100 400 A 80 80 0 0 0 20 320" fill="none" stroke="#999" stroke-dasharray="4 4"/>
-  <!-- cửa sổ tường N, offset 100, rộng 140: nét đôi -->
-  <line x1="100" y1="-4" x2="240" y2="-4" stroke="#69c" stroke-width="2"/>
-  <line x1="100" y1="2" x2="240" y2="2" stroke="#69c" stroke-width="2"/>
-  <!-- ví dụ một món đồ -->
-  <g>
-    <rect x="95" y="0" width="160" height="200" fill="#cfe3f5" stroke="#557"/>
-    <text x="175" y="100" text-anchor="middle" font-size="14">Giường 160×200</text>
-  </g>
-  <!-- kích thước tổng -->
-  <text x="175" y="-30" text-anchor="middle" font-size="16">350 cm</text>
-  <text x="-30" y="200" text-anchor="middle" font-size="16" transform="rotate(-90 -30 200)">400 cm</text>
-</svg>
-```
-
-Toạ độ mọi `rect` phải tự nhất quán: đồ khối không chồng lên nhau (thảm/lớp mềm là ngoại lệ), không lọt ra ngoài phòng, không đè khe cửa/cung mở.
+Toạ độ mọi `rect` phải tự nhất quán: đồ khối không chồng lên nhau (thảm/lớp mềm là ngoại lệ), không lọt ra ngoài phòng, không đè khe cửa/cung mở (bất biến schema §7.4 — `check_layout.py` kiểm).
 
 ### 4. Kiểm tra ergonomics — bắt buộc
 
@@ -76,15 +47,19 @@ Toạ độ mọi `rect` phải tự nhất quán: đồ khối không chồng l
 | PN-01 | Khoảng hai bên giường | 75 / 95 | 60 | ✅ |
 | PN-03 | Trước tủ áo cánh mở | 82 | 90 | ❌ → đổi cánh lùa hoặc dời tủ |
 
-Ngoài bảng định lượng, in thêm **checklist định tính** (mục riêng trong `ergonomics.md`) dạng ✅/❌ kèm 1 dòng giải thích.
+Ngoài bảng định lượng, in thêm **checklist định tính** (mục riêng trong `ergonomics.md`) dạng ✅/❌ kèm 1 dòng giải thích. Thêm tỉ lệ nghề: **đồ-trên-sàn ≤~40–45%** (KH-01) — `check_layout.py` tự tính.
 
 Rule FAIL: sửa layout rồi kiểm lại, hoặc nêu trade-off cho user quyết (vd "muốn giữ bàn làm việc thì lối đi còn 55cm, chấp nhận không?").
 
 ### 5. Chốt và ghi hồ sơ
 
-User chọn phương án (AskUserQuestion). Tạo `03-layout.md`: phương án chốt — danh sách đồ + footprint + toạ độ (x, y) từng món, **chiều cao bắt buộc cho món đặt đóng** (tủ kịch trần, tủ bếp — bước dự toán cần tính m² mặt cánh), bảng ergonomics cuối cùng, lý do bố trí chính, ghi chú thi công (món nào đặt đóng theo kích thước thực). Cập nhật `status.layout: done`. Nhắc user mở file SVG trong browser/IDE xem trực tiếp. Mời chạy `/interior-render` hoặc `/interior-budget`.
+User chọn phương án (AskUserQuestion). Tạo `03-layout.md`: **nêu parti đầu file** (KH-40); phương án chốt — danh sách đồ + footprint + toạ độ (x, y) từng món, **chiều cao bắt buộc cho món đặt đóng** (tủ kịch trần, tủ bếp — bước dự toán cần tính m² mặt cánh), bảng ergonomics cuối cùng, **rationale** lý do bố trí chính (mỗi quyết định → phục vụ parti/nhu cầu/chuẩn nào, schema §6), ghi chú thi công (món nào đặt đóng theo kích thước thực). Cập nhật `status.layout: done`. Nhắc user mở file SVG trong browser/IDE xem trực tiếp. Mời chạy `/interior-render` hoặc `/interior-budget`.
+
+## Gate trước khi set `status.layout: done`
+
+Chạy `python3 .claude/skills/interior/scripts/check_layout.py designs/<slug>/` và `check_project.py designs/<slug>/`. Có ❌ FAIL → **KHÔNG set done**: trình finding + 3 lựa chọn cho user (sửa theo đề xuất / user tự chỉnh / chấp nhận có chủ đích → ghi `accepted_tradeoffs` trong yaml để lần sau không báo lại). Chỉ `done` khi pass hoặc user chấp nhận có chủ đích. Lỗi cú pháp SVG thuần thì tự sửa nhưng báo đã sửa gì.
 
 ## Nguyên tắc
 
 - Phòng quá chật cho danh sách đồ → nói thẳng, đề xuất bỏ món gì, không nhồi vi phạm ergonomics.
-- User chỉnh tay ("dời giường sang trái 20cm"): cập nhật SVG + chạy lại bảng ergonomics, không chỉ sửa hình.
+- User chỉnh tay ("dời giường sang trái 20cm"): cập nhật SVG + chạy lại `check_layout.py` + bảng ergonomics, không chỉ sửa hình.

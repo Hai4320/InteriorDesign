@@ -4,6 +4,8 @@
 
 ## ✅ CONCEPT ĐÃ CHỐT: "Trà Sớm" (Japandi, lai accent xanh rêu)
 
+**Parti.** Phòng tổ chức quanh trục ánh sáng cửa sổ Đông Nam — vùng ngủ lùi vào phía trong yên tĩnh, bàn làm việc và chỗ đọc bám nguồn sáng tự nhiên. Mọi quyết định màu/vật liệu/bố trí phục vụ trục sáng này.
+
 User chọn concept 1 (thiên Japandi), lai ghép: thay nhấn đen mờ `#2F2F2F` mặc định của Japandi bằng **xanh rêu xám** vì user thích màu xanh; đen chỉ còn ở chi tiết nhỏ (chân đèn, khung ghế).
 
 **Mô tả cảm xúc.** Mở cửa vào là một khoảng lặng: tường be ấm, giường gỗ thấp trải linen màu yến mạch, ánh nắng sớm Đông Nam lọc qua rèm vải bố thành vệt mềm trên sàn. Ít đồ, mọi đường nét nằm ngang và thấp, mắt được nghỉ. Buổi tối, đèn giấy washi đầu giường toả quầng sáng ấm vừa đủ một trang sách — phòng vừa là chỗ ngủ vừa là chỗ thở.

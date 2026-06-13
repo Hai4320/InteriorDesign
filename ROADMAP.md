@@ -3,7 +3,7 @@
 > Tổng hợp từ deep-research đa nguồn (22 nguồn, 108 claim, verify đối kháng) + các lỗi thật phát hiện khi test bộ skill (15 + 8 finding qua 2 vòng dry-run, lỗi hex lệch giữa artifacts, comment bản lề lệch hình...).
 >
 > Ngày lập gốc: 2026-06-12. **Cập nhật theo research: 2026-06-13.**
-> Trạng thái triển khai: **① đang làm** (đã có `references/schema.md`); ②–⑦ chưa.
+> Trạng thái triển khai: **①+② xong (2026-06-13)** — schema + design-principles + assets + SKILL.md gọn + parti; scripts (`check_project.py`, `check_layout.py`, `hook_check.py`) + hook `PostToolUse` + quality gate mỗi skill. ③–⑦ chưa.
 
 ## Nguyên tắc chung
 
@@ -73,7 +73,7 @@ Pattern: `structured-output`, `specs/DESIGN.md`, progressive disclosure (Agent S
 |---|---|
 | `​.claude/skills/interior/references/schema.md` | ✅ **Đã tạo.** Spec chính thức cho `00-project.yaml`: từng trường (kiểu, R/O, enum), quy ước toạ độ/offset/swing, palette 60-30-10, hex 6 ký tự, enum status (`pending\|done\|stale`), `accepted_tradeoffs`, bảng bất biến xuyên artifact. **+ trường tầng-ý-đồ: `parti` (1 câu ý tưởng tổ chức, bắt buộc cho concept & layout) và `rationale` (decision log truy vết).** Nguồn sự thật duy nhất; SKILL.md chỉ trỏ tới. |
 | `​.claude/skills/interior/references/design-principles.md` *(mới — tầng "khéo")* | Chuẩn nghề để skill áp & **cite**, vượt khỏi clearance tối thiểu: tỉ lệ/proportion phòng, chiến lược ánh sáng tự nhiên (quan hệ giường/bàn với cửa sổ theo `room.sun`), phân tầng chiếu sáng nhân tạo (ambient/task/accent), tỉ lệ lưu trữ / người, tỉ lệ đồ-trên-sàn (≤~40-45%). Concept/layout phải dẫn chiếu nguyên tắc + precedent điển hình thay vì "vibes". |
-| `​.claude/skills/interior/assets/` *(đổi từ `templates/` → `assets/` theo spec)* | `project.yaml` (template placeholder), `layout.svg` (khung mẫu — sửa luôn comment bản lề `in-left`→`in-right` cho khớp hình), skeleton `01-brief.md`, `05-du-toan.md`. (`06-presentation.html` skeleton: hạ ưu tiên — node cuối, ít rủi ro lệch.) |
+| `​.claude/skills/interior/assets/` *(đổi từ `templates/` → `assets/` theo spec)* | `project.yaml` (template placeholder), `layout.svg` (khung mẫu — sửa luôn comment bản lề `in-left`→`in-right` cho khớp hình), skeleton `01-brief.md`, `05-budget.md`. (`06-presentation.html` skeleton: hạ ưu tiên — node cuối, ít rủi ro lệch.) |
 | Gọn các SKILL.md | Body chỉ còn: prerequisite, quy trình, nguyên tắc; template/schema trỏ file. Mục tiêu mỗi SKILL.md ≤ 60 dòng (hiện brief 104, layout 90 vượt). |
 | Mỗi skill validate input theo schema trước khi chạy | Thêm 1 dòng vào mục Prerequisite của từng skill: "validate `00-project.yaml` theo `schema.md`". |
 | Frontmatter chuẩn spec | Đối chiếu [anthropics/skills](https://github.com/anthropics/skills): `name` ≤64 ký tự kebab == tên thư mục, `description` ≤1024. (Hiện đã gần đúng — rà lại.) |

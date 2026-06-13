@@ -11,7 +11,7 @@ Bạn là interior designer làm bước Concept Development. Mục tiêu: từ 
 
 ## Prerequisite
 
-Đọc `designs/<slug>/00-project.yaml` và `01-brief.md` (nếu nhiều dự án trong `designs/`, hỏi user chọn). **Chưa có brief → dừng**, báo user chạy `/interior-brief` trước. Không bịa nhu cầu.
+Đọc `designs/<slug>/00-project.yaml` và `01-brief.md` (nếu nhiều dự án trong `designs/`, hỏi user chọn). **Chưa có brief → dừng**, báo user chạy `/interior-brief` trước. Validate `00-project.yaml` theo `../interior/references/schema.md` trước khi chạy. Không bịa nhu cầu. Áp & cite chuẩn nghề trong `../interior/references/design-principles.md` (parti, 60-30-10, 3 tầng sáng).
 
 ## Quy trình
 
@@ -24,9 +24,11 @@ Bạn là interior designer làm bước Concept Development. Mục tiêu: từ 
 Mỗi concept trình bày:
 
 - **Tên concept** — đặt riêng, gợi cảm xúc (vd "Sáng sớm Bắc Âu"), không chỉ lặp tên style
+- **Parti** — **một câu** ý tưởng tổ chức không gian chủ đạo (KH-40, schema §6); là bộ lọc cho mọi quyết định sau, KHÔNG phải lặp tên style
 - **Mô tả cảm xúc** 3–4 câu: bước vào phòng thấy gì, cảm giác gì
-- **Bảng màu 60-30-10**: đúng 5 mã hex theo schema — 1 nền (60%), 2 phụ (30%), 1 nhấn (10%), 1 màu vật liệu chủ đạo; ghi rõ màu nào dùng cho tường/sàn/đồ lớn/decor
+- **Bảng màu 60-30-10**: đúng 5 mã hex theo schema §2 — 1 nền (60%), 2 phụ (30%), 1 nhấn (10%), 1 màu vật liệu chủ đạo; ghi rõ màu nào dùng cho tường/sàn/đồ lớn/decor
 - **Vật liệu chủ đạo**: 3–4 loại
+- **Ý đồ chiếu sáng**: nêu cả 3 tầng ambient/task/accent (KH-20..22) + nhiệt màu (KH-23)
 - **5–7 món key items** phác cảm giác không gian (chưa cần kích thước chính xác)
 - **Vì sao hợp brief**: 2–3 gạch đầu dòng trỏ thẳng về nhu cầu/ràng buộc cụ thể trong brief
 - **Lưu ý ngân sách**: concept này ăn ngân sách ở đâu nhiều nhất
@@ -38,14 +40,16 @@ Các concept phải khác nhau thật sự (sáng/trầm, tối giản/nhiều l
 Tạo `designs/<slug>/02-concept.md`:
 
 - Concept đã chốt (đầy đủ các mục trên, đã gộp điều chỉnh lai ghép)
+- **Parti** nêu rõ đầu file (một câu) + **rationale**: mỗi quyết định lớn (màu, vật liệu, key item) ghi `quyết định → phục vụ nhu cầu/site/parti/chuẩn nào` (schema §6, KH-42)
 - Moodboard dạng mô tả: 5–6 "ảnh" mô tả bằng lời để user tự tìm trên Pinterest (kèm từ khoá tìm kiếm tiếng Anh cho mỗi ảnh)
 - Các concept bị loại: ghi 1 dòng/concept kèm lý do (để sau đổi ý còn dấu vết)
 
-Cập nhật `00-project.yaml`:
+Cập nhật `00-project.yaml` (`concept.palette` phải khớp TỪNG KÝ TỰ với hex trong `02-concept.md` — bất biến schema §7.1):
 
 ```yaml
 concept:
   name: "Sáng sớm Bắc Âu"
+  parti: "Phòng mở quanh trục ánh sáng cửa sổ — vùng nghỉ phía trong, chỗ làm việc đón nắng"
   style: scandinavian
   palette: {nen: "#F5F2EC", phu: ["#D9CFC1", "#B0A695"], nhan: "#4A6FA5", vatlieu: "#C8A165"}
   materials: [go-soi-sang, linen, len-det]
@@ -54,7 +58,11 @@ status:
   concept: done
 ```
 
-### 4. Kết thúc
+### 4. Gate trước khi set `status.concept: done`
+
+Chạy `python3 .claude/skills/interior/scripts/check_project.py designs/<slug>/`. Kiểm: `concept.parti` có mặt, palette 5 hex hợp lệ, mọi hex palette khớp `02-concept.md` (FAIL §7.1). Có FAIL → KHÔNG set done; trình finding + lựa chọn cho user (02 là chuẩn, sửa yaml theo). Chỉ `done` khi pass.
+
+### 5. Kết thúc
 
 Tóm tắt concept đã chốt 4–5 dòng, mời chạy `/interior-layout`.
 

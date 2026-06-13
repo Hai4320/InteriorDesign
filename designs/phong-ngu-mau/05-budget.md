@@ -76,4 +76,4 @@
 - [ ] Thử công năng: cánh tủ lùa chạy hết hành trình không vướng giường; cửa ra vào mở hết 90° không chạm tab S; kéo ghế ra 75 cm thoải mái; đèn sàn rọi tới gối đọc sách; rèm kéo kín cản nắng sớm Đông Nam.
 - [ ] Đo lại lối đi thực tế đúng số bảng ergonomics (82 / 110 / 130); chụp ảnh từng góc lưu hồ sơ.
 
-→ `status.dutoan: done`. 🎉 **Bộ hồ sơ hoàn chỉnh trong `designs/phong-ngu-mau/`**: 00-project.yaml · 01-brief.md · 02-concept.md · 03-layout(.svg/-A/-B/.md) · 04-render-prompts.md · 05-du-toan.md.
+→ `status.budget: done`. 🎉 **Bộ hồ sơ hoàn chỉnh trong `designs/phong-ngu-mau/`**: 00-project.yaml · 01-brief.md · 02-concept.md · 03-layout(.svg/-A/-B/.md) · 04-render-prompts.md · 05-budget.md.

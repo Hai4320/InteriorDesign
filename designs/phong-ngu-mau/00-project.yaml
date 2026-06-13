@@ -7,7 +7,7 @@ status:                  # cập nhật bởi từng skill khi xong
   concept: done
   layout: done
   render: done
-  dutoan: done
+  budget: done
   present: done
 room:
   width_cm: 350          # cạnh ngang bản vẽ (tường N/S)
@@ -43,6 +43,7 @@ keep_items:
 constraints: ["nhà thuê - hạn chế khoan tường"]
 concept:
   name: "Trà Sớm"
+  parti: "Phòng tổ chức quanh trục ánh sáng cửa sổ Đông Nam — vùng ngủ lùi vào phía trong yên tĩnh, bàn làm việc và chỗ đọc bám nguồn sáng tự nhiên"
   style: japandi
   palette: {nen: "#EAE3D9", phu: ["#A89F91", "#CBC2B4"], nhan: "#56655A", vatlieu: "#8A6F52"}
   materials: [go-tan-bi-tong-tram, may-tre, vai-bo-linen, gom-tho]
