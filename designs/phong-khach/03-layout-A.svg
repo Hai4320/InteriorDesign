@@ -1,0 +1,74 @@
+<!-- Phương án A — "Trục Đông: làm việc đón nắng phía Bắc, lounge quây phía Nam"
+     Phòng 500×600cm. 1px=1cm. Gốc (0,0) góc trên-trái. viewBox lề 60px.
+     Cửa tường W offset255 rộng90 in-left (bản lề (0,255)); cửa sổ tường E offset200 rộng200. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-60 -60 620 720" font-family="sans-serif">
+  <defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+    <path d="M50 0H0V50" fill="none" stroke="#ddd" stroke-width="1"/>
+  </pattern></defs>
+
+  <!-- lòng phòng 500×600 -->
+  <rect x="0" y="0" width="500" height="600" fill="url(#grid)" stroke="#222" stroke-width="10"/>
+
+  <!-- cửa ra vào tường W, offset 255, rộng 90, in-left: bản lề (0,255), cánh quét vào trong -->
+  <line x1="0" y1="255" x2="0" y2="345" stroke="#fff" stroke-width="10"/>
+  <path d="M 90 255 A 90 90 0 0 1 0 345" fill="none" stroke="#999" stroke-dasharray="4 4"/>
+  <text x="20" y="300" font-size="13" fill="#777">cửa</text>
+
+  <!-- cửa sổ tường E, offset 200, rộng 200: nét đôi -->
+  <line x1="496" y1="200" x2="496" y2="400" stroke="#69c" stroke-width="2"/>
+  <line x1="502" y1="200" x2="502" y2="400" stroke="#69c" stroke-width="2"/>
+  <text x="470" y="305" font-size="13" fill="#69c" text-anchor="middle" transform="rotate(-90 470 305)">cửa sổ Đông (nắng sáng)</text>
+
+  <!-- THẢM (lớp mềm, nét đứt, layer dưới) 290×200 -->
+  <rect x="180" y="400" width="290" height="200" fill="#F0EBE0" stroke="#bbb" stroke-dasharray="6 4"/>
+  <text x="200" y="590" font-size="12" fill="#999">thảm 290×200</text>
+
+  <!-- KỆ SÁCH (lưu trữ) 80×30 -->
+  <g>
+    <rect x="40" y="0" width="80" height="30" fill="#E0D6C2" stroke="#998"/>
+    <text x="80" y="20" text-anchor="middle" font-size="12">kệ sách 80×30</text>
+  </g>
+
+  <!-- BÀN ĐA DỤNG làm việc+ăn (gỗ) 140×70 -->
+  <g>
+    <rect x="300" y="30" width="140" height="70" fill="#EDE0C8" stroke="#a93"/>
+    <text x="370" y="70" text-anchor="middle" font-size="13">bàn đa dụng 140×70</text>
+  </g>
+
+  <!-- GHẾ LÀM VIỆC (ngồi) 60×60 -->
+  <g>
+    <rect x="340" y="110" width="60" height="60" fill="#D9E2EC" stroke="#557"/>
+    <text x="370" y="145" text-anchor="middle" font-size="11">ghế</text>
+  </g>
+
+  <!-- SOFA 3 chỗ (ngồi) 210×90 — quay mặt lên N, cửa sổ E ở bên phải -->
+  <g>
+    <rect x="230" y="500" width="210" height="90" fill="#D9E2EC" stroke="#557"/>
+    <text x="335" y="550" text-anchor="middle" font-size="13">sofa 3 chỗ 210×90</text>
+  </g>
+
+  <!-- BÀN TRÀ (gỗ) 110×55 -->
+  <g>
+    <rect x="280" y="410" width="110" height="55" fill="#EDE0C8" stroke="#a93"/>
+    <text x="335" y="442" text-anchor="middle" font-size="12">bàn trà 110×55</text>
+  </g>
+
+  <!-- ĐÈN SÀN ARC (decor) 35×35 — cạnh sofa, gần cửa sổ để đọc -->
+  <g>
+    <rect x="450" y="460" width="35" height="35" fill="#DCE8DC" stroke="#586"/>
+    <text x="467" y="450" text-anchor="middle" font-size="10">đèn</text>
+  </g>
+
+  <!-- CÂY XANH (decor) Ø45 — cạnh cửa sổ -->
+  <circle cx="470" cy="430" r="22" fill="#DCE8DC" stroke="#586"/>
+  <text x="470" y="434" text-anchor="middle" font-size="10">cây</text>
+
+  <!-- gióng khoảng cách quan trọng -->
+  <line x1="335" y1="465" x2="335" y2="500" stroke="#c66" stroke-width="1"/>
+  <text x="345" y="487" font-size="11" fill="#c66">35 (sofa↔bàn trà)</text>
+
+  <!-- kích thước tổng -->
+  <text x="250" y="-30" text-anchor="middle" font-size="16">500 cm</text>
+  <text x="-30" y="300" text-anchor="middle" font-size="16" transform="rotate(-90 -30 300)">600 cm</text>
+  <text x="250" y="-8" text-anchor="middle" font-size="12" fill="#888">PA A · N=trên · E=phải (cửa sổ)</text>
+</svg>

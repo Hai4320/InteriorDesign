@@ -1,0 +1,59 @@
+project:
+  slug: phong-khach
+  type: phong-khach
+  created: 2026-06-13
+status:
+  brief: done
+  concept: done
+  layout: done
+  render: pending
+  budget: pending
+  present: pending
+room:
+  width_cm: 500          # cạnh ngang (tường N/S)
+  depth_cm: 600          # cạnh dọc (tường E/W)
+  height_cm: 280         # ước lượng từ user nói "2.8m"
+  doors:
+    - wall: W             # cửa phía Tây; trùng tường W trên bản vẽ
+      offset_cm: 255      # giữa tường W (đo dọc trục y: (600-90)/2)
+      width_cm: 90        # mặc định cửa đơn tiêu chuẩn — user xác nhận
+      swing: in-left      # mở vào trong, bản lề đầu offset nhỏ (phía trên)
+  windows:
+    - wall: E             # cửa sổ phía Đông; nguồn sáng chính (nắng sáng)
+      offset_cm: 200      # giữa tường E (đo dọc trục y: (600-200)/2)
+      width_cm: 200
+      height_cm: 150
+      sill_cm: 90         # mặc định — user xác nhận
+  sun: dong              # cửa sổ quay hướng Đông (la bàn) → nắng buổi sáng
+  notes:
+    - "Cửa sổ hướng Đông (tường E) là nguồn sáng tự nhiên chính — tận dụng để giải nỗi đau thiếu sáng."
+    - "Cao trần 280cm ước lượng từ user nói '2.8m', chưa đo lại."
+    - "Kích thước cửa (90cm) và bệ cửa sổ (90cm) dùng mặc định tiêu chuẩn, user xác nhận, chưa đo thực tế."
+    - "Chưa khảo sát vị trí ổ điện / công tắc / điều hoà / hộp kỹ thuật — cần đo trước bước layout chi tiết."
+budget:
+  total_trieu: 80        # user chọn khoảng 60–100tr; lấy 80 làm mốc lập dự toán
+  scope: do-roi-va-hoan-thien
+  timeline: "Chưa gấp — làm dần, ưu tiên chất lượng hơn tiến độ"
+users: "Ở một mình (1 người). Phòng khách đa năng: thư giãn/đọc sách + làm việc/ăn uống trong cùng không gian."
+pain_points:
+  - "Thiếu ánh sáng tự nhiên, phòng tối"
+  - "Cảm giác chật, bố trí khó (dù diện tích 30m² khá rộng — nghi do cách kê đồ hiện tại)"
+style_hints:
+  like:
+    - Japandi
+    - Scandinavian
+  dislike: []
+  colors_like:
+    - "Trung tính ấm (be, kem, nâu gỗ, trắng ngà)"
+  colors_dislike: []
+constraints:
+  - "Nhà thuê — ưu tiên giải pháp tháo lắp, có thể mang đi khi chuyển"
+  - "Không khoan tường (treo/đóng đinh cố định vào tường hạn chế)"
+accepted_tradeoffs: []
+concept:
+  name: "Nắng sớm Bắc Âu"
+  parti: "Cả phòng mở quanh trục cửa sổ Đông — không có gì cao chắn nắng, mọi bề mặt sáng để dội ánh sáng buổi sáng đi khắp phòng"
+  style: scandinavian
+  palette: {nen: "#F5F2EC", phu: ["#D9CFC1", "#B0A695"], nhan: "#4A6FA5", vatlieu: "#C9A66B"}
+  materials: [go-soi-sang, linen, len-det, voan-trang]
+  key_items: [sofa-vai-chan-go, ghe-doc-don, den-san-arc, tham-len-det, ke-sach-go-sang, ban-da-dung-go, cay-xanh]
