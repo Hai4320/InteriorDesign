@@ -94,6 +94,7 @@ accepted_tradeoffs O list  ngoại lệ user CHỦ ĐÍCH chấp nhận (vd "PN-
                          Gate/script không báo lại các mã đã ghi ở đây. Mỗi mục: {ma|mo_ta, ly_do}.
 concept:        O  obj | null   interior-concept ghi sau khi chốt:
   name          R  str
+  parti         R  str   1 CÂU ý tưởng tổ chức chủ đạo — xem §6
   style         R  str   tên style
   palette       R  obj   {nen: hex, phu: [hex,hex], nhan: hex, vatlieu: hex}  (§2)
   materials     R  list  3–4 vật liệu chủ đạo
@@ -116,7 +117,15 @@ concept:        O  obj | null   interior-concept ghi sau khi chốt:
 
 Mỗi nhóm một fill nhạt nhất quán giữa các phương án: **ngủ** / **lưu trữ** / **ngồi** / **decor**. Thảm & lớp mềm vẽ nét đứt, đặt trước (layer dưới) các món khối.
 
-## 6. Bất biến phải đúng xuyên artifact *(script ② kiểm)*
+## 6. Tầng ý đồ: parti & rationale *(yêu cầu "như KTS thực thụ")*
+
+Để output có ý đồ nghề chứ không chỉ "xếp đồ vừa phòng":
+
+- **`parti`** = **một câu** ý tưởng tổ chức chủ đạo mà mọi quyết định phải phục vụ. Bắt buộc ở **concept** (`concept.parti` trong yaml + nêu trong `02-concept.md`) và ở **layout** (nêu đầu `03-layout.md`). Ví dụ: *"Phòng tổ chức quanh trục ánh sáng cửa sổ — vùng ngủ ở phía tối, bàn làm việc đón sáng tự nhiên."* Không phải lặp tên style.
+- **`rationale`** = decision log: mỗi quyết định lớn (bố trí, chọn vật liệu, cắt ngân sách) ghi `quyết định → phục vụ nhu cầu/site/chuẩn nào`. Viết trong artifact của bước (`02/03/05`), để review ③ và user truy vết được "vì sao". Một KTS thực thụ luôn defended được mọi lựa chọn.
+- **Grounding**: concept/layout phải dẫn chiếu chuẩn nghề trong `design-principles.md` (tỉ lệ, ánh sáng, lưu trữ) + precedent điển hình, thay vì khẳng định cảm tính.
+
+## 7. Bất biến phải đúng xuyên artifact *(script ② kiểm)*
 
 1. Mọi hex trong `02-concept.md` == `concept.palette` trong yaml (từng ký tự).
 2. Danh sách đồ trong `05-du-toan.md` (trừ `keep_items`) ⊆ danh sách đồ trong `03-layout.md`.

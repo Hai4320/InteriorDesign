@@ -9,7 +9,29 @@
 
 - Vấn đề gốc: pipeline 6 bước phụ thuộc dây chuyền, dữ liệu truyền qua file tự do → lỗi lệch schema, lệch số liệu giữa artifact, model ẩu khi tính toạ độ.
 - Hướng giải: chuyển từ "dặn dò trong SKILL.md" sang **cơ chế cứng** (schema, script, hook) ở những chỗ sai là hỏng dây chuyền; giữ linh hoạt ở phần sáng tạo (concept, render).
-- Không bê về: phân cấp đa agent, team commands, sprint/release — quy mô studio, overkill cho pipeline cá nhân.
+- Không bê về **quy mô studio** (đa agent thường trực, phân cấp, team commands, sprint/release) — xem quyết định dưới.
+
+### Quyết định: mượn *vai* studio, không lấy *quy mô* studio
+
+Cân nhắc "biến thành studio nhóm KTS đa agent" → **không**, cho studio runtime đầy đủ. Lý do: sai bài toán (pipeline cho 1 căn nhà của 1 user, nút thắt là đúng-khéo-hợp-ý chứ không phải throughput); pipeline **đã chuyên môn hoá theo bước** (concept=designer, layout=space-planner, budget=QS); chi phí thật (chạm session limit 2 lần chỉ với 1 deep-research → đa agent mỗi lần thiết kế là quá đắt/chậm cho công cụ cá nhân); và đa agent tự tranh luận chốt nội bộ **làm loãng quyền quyết của user** (mâu thuẫn human-in-the-loop) + dễ mất coherence.
+
+Nhưng **mượn 2 vai studio** giá trị nhất:
+- **Critic/principal độc lập** — vai studio chính thức của bộ skill, hiện thực ở ③ `interior-review`.
+- **Concept panel** — *chỉ ở bước concept* (không gian sáng tạo rộng): vài hướng đối lập → critic chấm → tổng hợp. Nâng nhẹ `interior-concept` đang "2-3 concept" thành mini judge-panel.
+
+Nguyên tắc chọn đa agent: chỉ đáng khi (a) không gian giải pháp rộng cần khám phá song song (→ concept), hoặc (b) cần góc nhìn độc lập bắt lỗi (→ critic). Kiểm tất định → dùng **script** (rẻ, chắc hơn agent); thực thi tuyến tính có spec rõ → **1 agent/bước**. Studio *dev-time* (workflow fan-out như deep-research, sinh nội dung `design-principles.md`) là công cụ thỉnh thoảng gọi, không phải kiến trúc thường trực.
+
+### 3 tầng kiểm soát đầu ra — *"như một KTS thực thụ"*
+
+Một output ra dáng kiến trúc sư cần kiểm soát 3 tầng, không chỉ tầng đúng/sai:
+
+| Tầng | Câu hỏi | Cơ chế | Phủ ở |
+|---|---|---|---|
+| **1. Đúng** (correctness) | Sai số liệu/hình học không? | Schema + script tất định | ①② |
+| **2. Khéo** (craft) | Đúng chuẩn nghề không? (tỉ lệ, ánh sáng, lưu trữ) | Thư viện chuẩn `design-principles.md` + script kiểm tỉ lệ | ①② |
+| **3. Có ý đồ** (intent) | Có một parti xuyên suốt + lý do truy vết được không? | Trường `parti` + `rationale` bắt buộc; rubric design-crit | ①③ |
+
+Tầng 3 là cái phân biệt KTS với người xếp đồ. Gu thẩm mỹ không tất định hoá được → kiểm soát tầng 2–3 = **rubric nghề (chủ quan → nửa-khách-quan) + grounding (chống bịa) + human-in-the-loop (user quyết gu)**. Harness không thay con mắt KTS; nó **ép quy trình của KTS**: có ý đồ, có lý do, tự phê bình, đối chiếu chuẩn.
 
 ## Nguyên tắc xuyên suốt: Human-in-the-loop *(ưu tiên cao nhất)*
 
@@ -49,7 +71,8 @@ Pattern: `structured-output`, `specs/DESIGN.md`, progressive disclosure (Agent S
 
 | Việc | Trạng thái / Chi tiết |
 |---|---|
-| `​.claude/skills/interior/references/schema.md` | ✅ **Đã tạo.** Spec chính thức cho `00-project.yaml`: từng trường (kiểu, R/O, enum), quy ước toạ độ/offset/swing, palette 60-30-10, hex 6 ký tự, enum status (`pending\|done\|stale`), `accepted_tradeoffs`, bảng bất biến xuyên artifact. Nguồn sự thật duy nhất; SKILL.md chỉ trỏ tới. |
+| `​.claude/skills/interior/references/schema.md` | ✅ **Đã tạo.** Spec chính thức cho `00-project.yaml`: từng trường (kiểu, R/O, enum), quy ước toạ độ/offset/swing, palette 60-30-10, hex 6 ký tự, enum status (`pending\|done\|stale`), `accepted_tradeoffs`, bảng bất biến xuyên artifact. **+ trường tầng-ý-đồ: `parti` (1 câu ý tưởng tổ chức, bắt buộc cho concept & layout) và `rationale` (decision log truy vết).** Nguồn sự thật duy nhất; SKILL.md chỉ trỏ tới. |
+| `​.claude/skills/interior/references/design-principles.md` *(mới — tầng "khéo")* | Chuẩn nghề để skill áp & **cite**, vượt khỏi clearance tối thiểu: tỉ lệ/proportion phòng, chiến lược ánh sáng tự nhiên (quan hệ giường/bàn với cửa sổ theo `room.sun`), phân tầng chiếu sáng nhân tạo (ambient/task/accent), tỉ lệ lưu trữ / người, tỉ lệ đồ-trên-sàn (≤~40-45%). Concept/layout phải dẫn chiếu nguyên tắc + precedent điển hình thay vì "vibes". |
 | `​.claude/skills/interior/assets/` *(đổi từ `templates/` → `assets/` theo spec)* | `project.yaml` (template placeholder), `layout.svg` (khung mẫu — sửa luôn comment bản lề `in-left`→`in-right` cho khớp hình), skeleton `01-brief.md`, `05-du-toan.md`. (`06-presentation.html` skeleton: hạ ưu tiên — node cuối, ít rủi ro lệch.) |
 | Gọn các SKILL.md | Body chỉ còn: prerequisite, quy trình, nguyên tắc; template/schema trỏ file. Mục tiêu mỗi SKILL.md ≤ 60 dòng (hiện brief 104, layout 90 vượt). |
 | Mỗi skill validate input theo schema trước khi chạy | Thêm 1 dòng vào mục Prerequisite của từng skill: "validate `00-project.yaml` theo `schema.md`". |
@@ -63,20 +86,20 @@ Pattern: `verification-gates`, hooks path-scoped exit-early. Tham khảo: **aadd
 
 | Việc | Chi tiết |
 |---|---|
-| `​scripts/check_layout.py` | Parse `00-project.yaml` + SVG: overlap đồ khối, lọt ngoài phòng, đè khe cửa/cung quét, tỉ lệ 1px=1cm; tính bảng ergonomics từ toạ độ thật (đọc rule từ `ergonomics.md`). Output bảng pass/fail. `interior-layout` bắt buộc chạy script này thay vì "tính tay". |
-| `​scripts/check_project.py` | Validate `00-project.yaml` theo `schema.md`; kiểm chéo bất biến §6 của schema (hex palette yaml vs `02-concept.md`, đồ layout vs dự toán, tổng dự toán đúng số học). Bỏ qua mã trong `accepted_tradeoffs`. |
+| `​scripts/check_layout.py` | Parse `00-project.yaml` + SVG: overlap đồ khối, lọt ngoài phòng, đè khe cửa/cung quét, tỉ lệ 1px=1cm; tính bảng ergonomics từ toạ độ thật (đọc rule từ `ergonomics.md`). **+ tỉ lệ nghề (tầng "khéo"): tỉ lệ đồ-trên-sàn ≤~40-45%, lưu trữ/người, quan hệ đồ chính với hướng cửa sổ** (đọc `design-principles.md`). Output bảng pass/fail. `interior-layout` bắt buộc chạy thay vì "tính tay". |
+| `​scripts/check_project.py` | Validate `00-project.yaml` theo `schema.md`; kiểm chéo bất biến §7 của schema (hex palette yaml vs `02-concept.md`, đồ layout vs dự toán, tổng dự toán đúng số học). Bỏ qua mã trong `accepted_tradeoffs`. |
 | Hook `PostToolUse` (Write/Edit vào `designs/**`) | Tự chạy `check_project.py` trên file vừa ghi; exit sớm nếu path không thuộc `designs/`. `PostToolUse` bản chất không chặn (tool đã chạy) → in finding qua stderr về Claude = đúng warn-not-block. Cấu hình trong `.claude/settings.json`. |
 | Quality gate cuối mỗi skill | Mỗi SKILL.md thêm "Gate trước khi set done": chạy script liên quan + checklist riêng. Gate fail → trình finding + lựa chọn (sửa theo đề xuất / user tự chỉnh / chấp nhận thành `accepted_tradeoffs`); `status: done` chỉ khi pass hoặc user chấp nhận có chủ đích. |
 
 Acceptance: layout sai hình học không lọt qua gate mà user không biết; sửa tay file trong `designs/` cũng được hook báo; ngoại lệ user đã chấp nhận không bị báo lại.
 
-### ③ Skill `interior-review` — LLM judge có mức độ
+### ③ Skill `interior-review` — LLM judge có mức độ *(vai "critic/principal" của studio)*
 
 Pattern: `agentic-evaluators`, reviewer-agent đa tầng (claude-pipeline).
 
 | Việc | Chi tiết |
 |---|---|
-| Skill mới `interior-review` | Chấm chéo toàn hồ sơ theo rubric: (a) nhất quán xuyên artifact; (b) độ khớp brief — từng nhu cầu/ràng buộc/pain point được giải quyết ở đâu; (c) chất lượng từng artifact theo checklist riêng. Output: điểm + bảng finding `file \| vấn đề \| mức độ \| đề xuất`. **Chỉ báo cáo — user duyệt từng finding rồi mới sửa.** |
+| Skill mới `interior-review` — **rubric design-crit** | Đóng vai director phê bình như buổi crit KTS, không chỉ soi số liệu. Rubric: (a) nhất quán xuyên artifact; (b) độ khớp brief — từng nhu cầu/ràng buộc/pain point giải quyết ở đâu; (c) **parti có rõ & layout/concept/vật liệu có cùng kể một câu chuyện không**; (d) **circulation, hierarchy ánh sáng/màu, tỉ lệ** đối chiếu `design-principles.md`; (e) chất lượng từng artifact. Output: điểm + bảng finding `file \| vấn đề \| mức độ \| đề xuất`. **Chỉ báo cáo — user duyệt từng finding rồi mới sửa.** |
 | (Tuỳ chọn) prompt-hook LLM-judge | Research xác nhận Claude Code hỗ trợ "prompt" hook đánh giá bằng ngôn ngữ tự nhiên — có thể dùng cho mode `lean` tự động cảnh báo nhất quán số liệu mà không cần viết script bóc tách phức tạp. Vẫn warn-not-block. |
 | 3 modes | `full` — toàn rubric; `lean` — chỉ (a) nhất quán số liệu (mặc định); `solo` — chỉ chạy script ②, không judge. |
 | Vị trí | Tuỳ chọn, gợi ý chạy trước `interior-present`; orchestrator thêm vào bảng trạng thái. |
