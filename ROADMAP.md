@@ -3,7 +3,7 @@
 > Tổng hợp từ deep-research đa nguồn (22 nguồn, 108 claim, verify đối kháng) + các lỗi thật phát hiện khi test bộ skill (15 + 8 finding qua 2 vòng dry-run, lỗi hex lệch giữa artifacts, comment bản lề lệch hình...).
 >
 > Ngày lập gốc: 2026-06-12. **Cập nhật theo research: 2026-06-13.**
-> Trạng thái triển khai: **①+② xong (2026-06-13)** — schema + design-principles + assets + SKILL.md gọn + parti; scripts (`check_project.py`, `check_layout.py`, `hook_check.py`) + hook `PostToolUse` + quality gate mỗi skill. ③–⑦ chưa.
+> Trạng thái triển khai: **①②③⑤ xong (2026-06-13)** — ① schema/design-principles/assets/parti + SKILL.md gọn; ② scripts + hook `PostToolUse` + quality gate; ③ skill `interior-review` (3 modes, rubric design-crit); ⑤ `CLAUDE.md` (human-in-the-loop + collaborative protocol). ④⑥⑦ chưa.
 
 ## Nguyên tắc chung
 

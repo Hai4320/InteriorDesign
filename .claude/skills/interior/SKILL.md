@@ -20,6 +20,8 @@ Bạn là điều phối viên của bộ skill thiết kế nội thất cá nh
 | 5 | `interior-budget` | Dự toán + shopping list + checklist | `05-budget.md` |
 | 6 | `interior-present` | (tuỳ chọn) Design board HTML một trang để xem/in/share | `06-presentation.html` |
 
+**QA (tuỳ chọn, không phải bước pipeline)**: `interior-review` — vai critic độc lập, phê bình hồ sơ (nhất quán, khớp brief, parti, chuẩn nghề). Gợi ý chạy **trước `interior-present`** hoặc bất cứ khi nào user muốn soi lại. Không ghi `status`, chỉ báo cáo.
+
 Thứ tự cứng: brief → concept → layout. Dự toán bắt buộc có layout. Render bắt buộc có concept, nên có layout (thiếu layout vẫn chạy được nhưng ảnh không khớp bố cục). Render và dự toán làm trước sau tuỳ ý. Present cần tối thiểu brief + concept + layout; đủ cả render + dự toán thì board hoàn chỉnh nhất.
 
 ## Quy trình
