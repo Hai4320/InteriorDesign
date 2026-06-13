@@ -1,0 +1,46 @@
+# Template 00-project.yaml — điền số liệu THẬT của user, không copy giá trị ví dụ.
+# Spec đầy đủ từng trường: ../references/schema.md. Trường user không biết: null + note.
+project:
+  slug: <slug-khong-dau>          # == tên thư mục designs/<slug>/
+  type: <phong-khach|phong-ngu|bep-an|phong-tam|khac>
+  created: <YYYY-MM-DD>
+status:                           # mỗi bước cập nhật khi xong: pending | done | stale
+  brief: done
+  concept: pending
+  layout: pending
+  render: pending
+  dutoan: pending
+  present: pending
+room:
+  width_cm: <int>                 # cạnh ngang (tường N/S)
+  depth_cm: <int>                 # cạnh dọc (tường E/W)
+  height_cm: <int>
+  doors:
+    - wall: <N|E|S|W>
+      offset_cm: <int>            # đo theo chiều tăng trục — xem schema.md §1
+      width_cm: <int>
+      swing: <in-left|in-right|out-left|out-right>   # left=bản lề đầu offset nhỏ
+  windows:                        # optional — bỏ mảng nếu không có
+    - wall: <N|E|S|W>
+      offset_cm: <int>
+      width_cm: <int>
+      height_cm: <int>
+      sill_cm: <int>
+  sun: <bac|nam|dong|tay|dong-bac|dong-nam|tay-bac|tay-nam|null>   # hướng LA BÀN thật
+  notes: []                       # ghi chú hiện trạng: tường ẩm, hộp kỹ thuật...
+budget:
+  total_trieu: <int>
+  scope: <do-roi|do-roi-va-hoan-thien>
+  timeline: <str|null>
+users: "<chân dung người dùng: ai, mấy người, thói quen chính>"
+pain_points: []
+style_hints:
+  like: []
+  dislike: []
+  colors_like: []
+  colors_dislike: []
+keep_items:                       # đồ giữ lại; bỏ mảng nếu không có
+  - {name: "<tên>", w: <cm>, d: <cm>}
+constraints: []
+accepted_tradeoffs: []            # ngoại lệ user CHỦ ĐÍCH chấp nhận: {ma|mo_ta, ly_do}
+concept: null                     # interior-concept ghi sau khi chốt — cấu trúc xem schema.md §3

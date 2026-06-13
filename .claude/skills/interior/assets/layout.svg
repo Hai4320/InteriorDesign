@@ -1,0 +1,33 @@
+<!-- Khung mẫu floor plan. Quy ước đầy đủ: ../references/schema.md §1, §5.
+     1px = 1cm. Gốc (0,0) góc trên-trái lòng phòng. viewBox lề 60px quanh phòng.
+     Thay 350/400 bằng room.width_cm/room.depth_cm thật. viewBox = "-60 -60 (W+120) (D+120)". -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-60 -60 470 520" font-family="sans-serif">
+  <defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+    <path d="M50 0H0V50" fill="none" stroke="#ddd" stroke-width="1"/>
+  </pattern></defs>
+
+  <!-- lòng phòng W×D = 350×400 -->
+  <rect x="0" y="0" width="350" height="400" fill="url(#grid)" stroke="#222" stroke-width="10"/>
+
+  <!-- cửa ra vào tường S, offset 20, rộng 80, swing in-right:
+       bản lề ở đầu offset LỚN (100,400); cánh quét VÀO trong phòng (xem schema.md §1) -->
+  <line x1="20" y1="400" x2="100" y2="400" stroke="#fff" stroke-width="10"/>
+  <path d="M 100 400 A 80 80 0 0 0 20 320" fill="none" stroke="#999" stroke-dasharray="4 4"/>
+
+  <!-- cửa sổ tường N, offset 100, rộng 140: nét đôi -->
+  <line x1="100" y1="-4" x2="240" y2="-4" stroke="#69c" stroke-width="2"/>
+  <line x1="100" y1="2"  x2="240" y2="2"  stroke="#69c" stroke-width="2"/>
+
+  <!-- thảm / lớp mềm vẽ TRƯỚC (layer dưới), nét đứt -->
+  <!-- <rect x=".." y=".." width=".." height=".." fill="#f3efe7" stroke="#bbb" stroke-dasharray="6 4"/> -->
+
+  <!-- mỗi món đồ: <g> gồm <rect> (fill theo nhóm ngủ/lưu trữ/ngồi/decor — schema.md §5) + <text> -->
+  <g>
+    <rect x="95" y="0" width="160" height="200" fill="#cfe3f5" stroke="#557"/>
+    <text x="175" y="100" text-anchor="middle" font-size="14">Giường 160×200</text>
+  </g>
+
+  <!-- kích thước tổng -->
+  <text x="175" y="-30" text-anchor="middle" font-size="16">350 cm</text>
+  <text x="-30" y="200" text-anchor="middle" font-size="16" transform="rotate(-90 -30 200)">400 cm</text>
+</svg>
