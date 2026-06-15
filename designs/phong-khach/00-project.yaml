@@ -6,9 +6,9 @@ status:
   brief: done
   concept: done
   layout: done
-  render: pending
-  budget: pending
-  present: pending
+  render: done
+  budget: done
+  present: done
 room:
   width_cm: 500          # cạnh ngang (tường N/S)
   depth_cm: 600          # cạnh dọc (tường E/W)

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nắng sớm Bắc Âu — Phòng khách</title>
+<style>
+  :root{
+    --nen:#F5F2EC; --phu-a:#D9CFC1; --phu-b:#B0A695;
+    --nhan:#4A6FA5; --vatlieu:#C9A66B; --pagebg:#FAF8F5;
+    --ink:#2c2c2c; --muted:#777; --line:#e3ddd2;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--pagebg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.55;
+  }
+  .wrap{max-width:960px; margin:0 auto; padding:32px 24px 80px}
+  h1,h2,h3{color:var(--nhan); line-height:1.25}
+  h1{font-size:30px; margin:0 0 4px}
+  h2{font-size:22px; margin:0 0 14px; border-bottom:2px solid var(--phu-a); padding-bottom:6px}
+  h3{font-size:16px; margin:18px 0 8px}
+  section{background:#fff; border:1px solid var(--line); border-radius:10px; padding:24px 26px; margin:22px 0}
+  header.hd{background:#fff; border:1px solid var(--line); border-radius:10px; padding:26px; margin:0 0 22px}
+  .sub{color:var(--muted); font-size:14px}
+  .meta{display:flex; flex-wrap:wrap; gap:10px 22px; margin:14px 0 0; font-size:14px}
+  .meta b{color:var(--nhan)}
+  .pipe{margin-top:14px; font-size:14px}
+  .pipe span{display:inline-block; margin-right:14px}
+  table{border-collapse:collapse; width:100%; font-size:14px; margin:10px 0}
+  th,td{border:1px solid var(--line); padding:7px 9px; text-align:left; vertical-align:top}
+  th{background:var(--nen); color:var(--ink)}
+  .swatches{display:flex; flex-wrap:wrap; gap:14px; margin:14px 0}
+  .sw{width:140px; border:1px solid var(--line); border-radius:8px; overflow:hidden}
+  .sw .chip{height:90px}
+  .sw .lab{padding:8px 10px; font-size:13px}
+  .sw .lab .hex{font-family:ui-monospace,Menlo,Consolas,monospace; font-size:12px; color:var(--muted)}
+  .chips span{display:inline-block; background:var(--nen); border:1px solid var(--line);
+    border-radius:14px; padding:4px 11px; margin:4px 6px 4px 0; font-size:13px}
+  ul{margin:8px 0; padding-left:20px}
+  .svgbox{border:1px solid var(--line); border-radius:8px; background:#fff; padding:10px; overflow:auto}
+  .svgbox svg{display:block; width:100%; height:auto; max-height:560px}
+  .toggle{margin:6px 0 12px}
+  .toggle button{font:inherit; padding:6px 16px; border:1px solid var(--phu-b); background:#fff;
+    color:var(--ink); border-radius:6px; cursor:pointer; margin-right:8px}
+  .toggle button.active{background:var(--nhan); color:#fff; border-color:var(--nhan)}
+  .badge{display:inline-block; font-size:12px; padding:2px 8px; border-radius:10px; margin-left:6px}
+  .badge.ok{background:#e7f0e3; color:#3a6b2e}
+  .badge.warn{background:#fbf3da; color:#8a6d1a}
+  .card{border:1px solid var(--line); border-radius:8px; padding:14px 16px; margin:14px 0}
+  pre{background:var(--nen); border:1px solid var(--line); border-radius:6px; padding:12px;
+    white-space:pre-wrap; word-break:break-word; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:12.5px; margin:8px 0}
+  .copy{font:inherit; padding:5px 14px; border:1px solid var(--nhan); background:var(--nhan);
+    color:#fff; border-radius:6px; cursor:pointer}
+  details{margin:8px 0}
+  summary{cursor:pointer; color:var(--nhan); font-size:14px}
+  .banner{padding:14px 16px; border-radius:8px; margin:10px 0; font-size:14px}
+  .banner.todo{background:#eef1f5; border:1px solid #c9d3e0}
+  .warnline{background:#fbf3da; border:1px solid #ecdca0; border-radius:6px; padding:10px 12px; margin:10px 0; font-size:14px}
+  footer{color:var(--muted); font-size:13px; margin-top:26px; text-align:center}
+  footer code{font-size:12px}
+  @media print{
+    body{background:#fff}
+    .copy,.toggle button{display:none}
+    section,header.hd{break-inside:avoid; border:1px solid #ccc}
+    section{page-break-before:always}
+    header.hd{page-break-before:avoid}
+    details{display:block} details[open] summary{display:none}
+    .svgbox svg{max-height:none}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 1. HEADER -->
+  <header class="hd">
+    <h1>Nắng sớm Bắc Âu</h1>
+    <div class="sub">Dự án <b>phong-khach</b> · Phòng khách · phong cách Scandinavian</div>
+    <div class="meta">
+      <span><b>Kích thước:</b> 500 × 600 × 280 cm (≈ 30 m²)</span>
+      <span><b>Ngày lập:</b> 2026-06-13</span>
+      <span><b>Ngân sách:</b> ~80 triệu (60–100)</span>
+      <span><b>Phạm vi:</b> đồ rời + hoàn thiện</span>
+    </div>
+    <div class="pipe">
+      <span>✅ Brief</span><span>✅ Concept</span><span>✅ Layout</span>
+      <span>✅ Render</span><span>⬜ Dự toán</span><span>⬜ Board</span>
+    </div>
+  </header>
+
+  <!-- 2. CONCEPT -->
+  <section>
+    <h2>Concept — "Nắng sớm Bắc Âu"</h2>
+    <p><b>Parti:</b> Cả phòng mở quanh trục cửa sổ Đông — không có gì cao chắn nắng, mọi bề mặt sáng để dội ánh sáng buổi sáng đi khắp phòng.</p>
+    <p>Bước vào thấy <b>sáng bừng, thoáng, nhẹ</b>. Tường trắng kem, sàn và đồ gỗ sồi sáng, vải linen xám nhạt — như một quán cà phê Bắc Âu buổi sớm: gọn, tươi, dễ thở. Ánh sáng là nhân vật chính; đồ đạc lùi lại làm nền. Vài điểm xanh dusty blue (gối, tranh, bình) giữ không gian không bị "trắng vô hồn".</p>
+
+    <h3>Bảng màu (60-30-10)</h3>
+    <div class="swatches">
+      <div class="sw"><div class="chip" style="background:#F5F2EC"></div><div class="lab">Nền 60%<br><span class="hex">#F5F2EC</span> · trắng kem</div></div>
+      <div class="sw"><div class="chip" style="background:#D9CFC1"></div><div class="lab">Phụ 30%<br><span class="hex">#D9CFC1</span> · be</div></div>
+      <div class="sw"><div class="chip" style="background:#B0A695"></div><div class="lab">Phụ 30%<br><span class="hex">#B0A695</span> · greige</div></div>
+      <div class="sw"><div class="chip" style="background:#4A6FA5"></div><div class="lab">Nhấn 10%<br><span class="hex">#4A6FA5</span> · dusty blue</div></div>
+      <div class="sw"><div class="chip" style="background:#C9A66B"></div><div class="lab">Vật liệu<br><span class="hex">#C9A66B</span> · gỗ sồi sáng</div></div>
+    </div>
+
+    <h3>Vật liệu chủ đạo</h3>
+    <ul>
+      <li>Gỗ sồi / tần bì sáng màu — chân sofa, kệ, bàn.</li>
+      <li>Vải linen — bọc sofa, đệm ghế, rèm; chất mộc, thoáng.</li>
+      <li>Len dệt — thảm định vùng, plaid; thêm ấm và texture.</li>
+      <li>Voan trắng — rèm lớp trong, lọc nắng sáng dịu mà vẫn sáng.</li>
+    </ul>
+
+    <h3>Key items (7 món)</h3>
+    <ul>
+      <li>Sofa vải xám sáng / be, chân gỗ thanh (đồ thống trị).</li>
+      <li>Ghế đọc đơn đặt cạnh cửa sổ E (đón nắng sáng).</li>
+      <li>Đèn sàn arc cạnh ghế đọc (task + accent).</li>
+      <li>Thảm len dệt sáng định vùng ngồi.</li>
+      <li>Kệ sách gỗ sáng đứng sàn (không khoan tường).</li>
+      <li>Bàn đa dụng gỗ (làm việc + ăn uống chung).</li>
+      <li>Cây xanh nhỏ + vài bình gốm nhấn xanh dusty blue.</li>
+    </ul>
+
+    <h3>Moodboard — từ khoá tìm trên Pinterest</h3>
+    <div class="chips">
+      <span>scandinavian living room light oak floor beige sofa</span>
+      <span>reading nook by window arc floor lamp scandinavian</span>
+      <span>light wood freestanding bookshelf minimal styling</span>
+      <span>scandinavian wood dining work table light chairs</span>
+      <span>woven wool rug linen cushions dusty blue accent</span>
+      <span>indoor plants ceramic vase white wall scandinavian corner</span>
+    </div>
+  </section>
+
+  <!-- 3. LAYOUT -->
+  <section>
+    <h2>Layout — mặt bằng bố trí</h2>
+    <p class="sub">Nhìn từ trên xuống · 1px = 1cm · N=trên, S=dưới, W=trái (cửa), E=phải (cửa sổ Đông, nắng sáng). Phương án chốt: <b>🅐</b>.</p>
+    <div class="toggle">
+      <button id="btnA" class="active" onclick="showPlan('A')">Phương án 🅐 (chốt)</button>
+      <button id="btnB" onclick="showPlan('B')">Phương án B (thay thế)</button>
+    </div>
+
+    <div id="planA">
+      <div class="svgbox">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-60 -60 620 720" font-family="sans-serif">
+  <defs><pattern id="grid-A" width="50" height="50" patternUnits="userSpaceOnUse">
+    <path d="M50 0H0V50" fill="none" stroke="#ddd" stroke-width="1"/>
+  </pattern></defs>
+  <rect x="0" y="0" width="500" height="600" fill="url(#grid-A)" stroke="#222" stroke-width="10"/>
+  <line x1="0" y1="255" x2="0" y2="345" stroke="#fff" stroke-width="10"/>
+  <path d="M 90 255 A 90 90 0 0 1 0 345" fill="none" stroke="#999" stroke-dasharray="4 4"/>
+  <text x="20" y="300" font-size="13" fill="#777">cửa</text>
+  <line x1="496" y1="200" x2="496" y2="400" stroke="#69c" stroke-width="2"/>
+  <line x1="502" y1="200" x2="502" y2="400" stroke="#69c" stroke-width="2"/>
+  <text x="470" y="305" font-size="13" fill="#69c" text-anchor="middle" transform="rotate(-90 470 305)">cửa sổ Đông (nắng sáng)</text>
+  <rect x="180" y="400" width="290" height="200" fill="#F0EBE0" stroke="#bbb" stroke-dasharray="6 4"/>
+  <text x="200" y="590" font-size="12" fill="#999">thảm 290×200</text>
+  <g><rect x="40" y="0" width="80" height="30" fill="#E0D6C2" stroke="#998"/>
+    <text x="80" y="20" text-anchor="middle" font-size="12">kệ sách 80×30</text></g>
+  <g><rect x="300" y="30" width="140" height="70" fill="#EDE0C8" stroke="#a93"/>
+    <text x="370" y="70" text-anchor="middle" font-size="13">bàn đa dụng 140×70</text></g>
+  <g><rect x="340" y="110" width="60" height="60" fill="#D9E2EC" stroke="#557"/>
+    <text x="370" y="145" text-anchor="middle" font-size="11">ghế</text></g>
+  <g><rect x="230" y="500" width="210" height="90" fill="#D9E2EC" stroke="#557"/>
+    <text x="335" y="550" text-anchor="middle" font-size="13">sofa 3 chỗ 210×90</text></g>
+  <g><rect x="280" y="410" width="110" height="55" fill="#EDE0C8" stroke="#a93"/>
+    <text x="335" y="442" text-anchor="middle" font-size="12">bàn trà 110×55</text></g>
+  <g><rect x="450" y="460" width="35" height="35" fill="#DCE8DC" stroke="#586"/>
+    <text x="467" y="450" text-anchor="middle" font-size="10">đèn</text></g>
+  <circle cx="470" cy="430" r="22" fill="#DCE8DC" stroke="#586"/>
+  <text x="470" y="434" text-anchor="middle" font-size="10">cây</text>
+  <line x1="335" y1="465" x2="335" y2="500" stroke="#c66" stroke-width="1"/>
+  <text x="345" y="487" font-size="11" fill="#c66">35 (sofa↔bàn trà)</text>
+  <text x="250" y="-30" text-anchor="middle" font-size="16">500 cm</text>
+  <text x="-30" y="300" text-anchor="middle" font-size="16" transform="rotate(-90 -30 300)">600 cm</text>
+  <text x="250" y="-8" text-anchor="middle" font-size="12" fill="#888">PA A · N=trên · E=phải (cửa sổ)</text>
+</svg>
+      </div>
+      <h3>Ergonomics — phương án 🅐</h3>
+      <table>
+        <tr><th>Mã</th><th>Mô tả</th><th>Thực tế</th><th>Tối thiểu</th><th>KQ</th></tr>
+        <tr><td>LT-01</td><td>Lối đi chính (cửa W → trung tâm)</td><td>~160cm</td><td>60</td><td>✅</td></tr>
+        <tr><td>LT-03</td><td>Khoảng trống trước cửa (cung mở R90)</td><td>90 + trống</td><td>90</td><td>✅</td></tr>
+        <tr><td>PK-01</td><td>Sofa ↔ bàn trà</td><td>35</td><td>35</td><td>✅ <span class="sub">(đạt tối thiểu; dưới khuyến nghị 40–45)</span></td></tr>
+        <tr><td>PK-04</td><td>Khoảng trống quanh cụm sofa</td><td>60+</td><td>45</td><td>✅</td></tr>
+        <tr><td>PN-06</td><td>Khoảng kéo ghế làm việc</td><td>~240cm</td><td>75</td><td>✅</td></tr>
+        <tr><td>KH-01</td><td>Tỉ lệ đồ-trên-sàn</td><td>14%</td><td>≤45%</td><td>✅</td></tr>
+      </table>
+      <div class="warnline">⚠️ <b>KH-10</b> — bàn làm việc: cửa sổ E ở <b>bên phải</b> người ngồi (lý tưởng bên trái cho người thuận tay phải). Có thể lật bàn nếu thấy vướng; với laptop/đọc thì sáng phải vẫn tốt.</div>
+    </div>
+
+    <div id="planB" style="display:none">
+      <div class="svgbox">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-60 -60 620 720" font-family="sans-serif">
+  <defs><pattern id="grid-B" width="50" height="50" patternUnits="userSpaceOnUse">
+    <path d="M50 0H0V50" fill="none" stroke="#ddd" stroke-width="1"/>
+  </pattern></defs>
+  <rect x="0" y="0" width="500" height="600" fill="url(#grid-B)" stroke="#222" stroke-width="10"/>
+  <line x1="0" y1="255" x2="0" y2="345" stroke="#fff" stroke-width="10"/>
+  <path d="M 90 255 A 90 90 0 0 1 0 345" fill="none" stroke="#999" stroke-dasharray="4 4"/>
+  <text x="20" y="300" font-size="13" fill="#777">cửa</text>
+  <line x1="496" y1="200" x2="496" y2="400" stroke="#69c" stroke-width="2"/>
+  <line x1="502" y1="200" x2="502" y2="400" stroke="#69c" stroke-width="2"/>
+  <text x="470" y="305" font-size="13" fill="#69c" text-anchor="middle" transform="rotate(-90 470 305)">cửa sổ Đông (nắng sáng)</text>
+  <rect x="240" y="160" width="200" height="290" fill="#F0EBE0" stroke="#bbb" stroke-dasharray="6 4"/>
+  <text x="250" y="440" font-size="12" fill="#999">thảm 200×290</text>
+  <g><rect x="30" y="30" width="140" height="70" fill="#EDE0C8" stroke="#a93"/>
+    <text x="100" y="70" text-anchor="middle" font-size="13">bàn đa dụng 140×70</text></g>
+  <g><rect x="70" y="110" width="60" height="60" fill="#D9E2EC" stroke="#557"/>
+    <text x="100" y="145" text-anchor="middle" font-size="11">ghế</text></g>
+  <g><rect x="250" y="200" width="90" height="210" fill="#D9E2EC" stroke="#557"/>
+    <text x="295" y="305" text-anchor="middle" font-size="13" transform="rotate(-90 295 305)">sofa 3 chỗ 210×90</text></g>
+  <g><rect x="380" y="250" width="55" height="110" fill="#EDE0C8" stroke="#a93"/>
+    <text x="407" y="308" text-anchor="middle" font-size="11" transform="rotate(-90 407 308)">bàn trà 110×55</text></g>
+  <g><rect x="250" y="160" width="35" height="35" fill="#DCE8DC" stroke="#586"/>
+    <text x="267" y="150" text-anchor="middle" font-size="10">đèn</text></g>
+  <g><rect x="470" y="430" width="30" height="80" fill="#E0D6C2" stroke="#998"/>
+    <text x="485" y="470" text-anchor="middle" font-size="10" transform="rotate(-90 485 470)">kệ sách</text></g>
+  <circle cx="430" cy="470" r="22" fill="#DCE8DC" stroke="#586"/>
+  <text x="430" y="474" text-anchor="middle" font-size="10">cây</text>
+  <line x1="340" y1="305" x2="380" y2="305" stroke="#c66" stroke-width="1"/>
+  <text x="345" y="298" font-size="11" fill="#c66">40 (sofa↔bàn trà)</text>
+  <text x="250" y="-30" text-anchor="middle" font-size="16">500 cm</text>
+  <text x="-30" y="300" text-anchor="middle" font-size="16" transform="rotate(-90 -30 300)">600 cm</text>
+  <text x="250" y="-8" text-anchor="middle" font-size="12" fill="#888">PA B · N=trên · E=phải (cửa sổ)</text>
+</svg>
+      </div>
+      <p class="sub">Phương án thay thế "Lounge ôm cửa sổ": sofa quay mặt ra cửa sổ Đông, làm việc nép góc Tây-Bắc, sofa↔bàn trà 40cm (rộng hơn A). Không được chọn vì A giữ trung tâm phòng trống liền mạch tốt hơn cho cảm giác rộng.</p>
+    </div>
+
+    <h3>Lý do bố trí (phương án chốt 🅐)</h3>
+    <ul>
+      <li>Tách 2 vùng Bắc (làm việc) – Nam (lounge), trung tâm để trống → parti "phòng mở quanh trục cửa sổ"; giải nỗi đau "chật" bằng khoảng trống trung tâm liền mạch.</li>
+      <li>Sofa tựa tường S, quay mặt lên N, đầu phải sát cửa sổ E → đọc sách đón nắng bên phải; lưng tựa tường không quay ra cửa.</li>
+      <li>Đèn sàn arc + cây cạnh cửa sổ → task/accent cho góc đọc; cây đón nắng.</li>
+      <li>Bàn làm việc góc Đông-Bắc, không kê tường E → đón sáng tự nhiên mà cửa sổ vẫn "thở".</li>
+      <li>Toàn đồ rời đứng sàn, không kệ treo → ràng buộc nhà thuê + không khoan tường.</li>
+    </ul>
+
+    <h3>Ghi chú thi công</h3>
+    <ul>
+      <li>Không có hạng mục đặt đóng — tất cả đồ rời mua sẵn, thuận cho nhà thuê.</li>
+      <li>Ưu tiên: sofa chân gỗ hở, kệ sách đứng sàn không khoan, đèn arc + đèn bàn thay đèn âm trần.</li>
+      <li>Sofa↔bàn trà đang ở mức tối thiểu 35cm — muốn duỗi chân thoải mái hơn, đẩy bàn trà về phía cửa sổ thêm 5–10cm (vẫn trong thảm).</li>
+      <li><b>Cần đo lại trước khi mua:</b> vị trí ổ điện cho bàn làm việc (góc Đông-Bắc); thiếu ổ gần đó → tính ổ/dây kéo dài (nhà thuê, không đi dây âm).</li>
+    </ul>
+  </section>
+
+  <!-- 4. RENDER -->
+  <section>
+    <h2>Render prompts</h2>
+    <p class="sub">4 góc máy, mỗi card có prompt Midjourney (copy nhanh); DALL-E 3 + SDXL trong phần mở rộng. Ảnh sinh ra là <b>minh hoạ cảm giác</b>, không phải bản vẽ kỹ thuật.</p>
+
+    <div class="card">
+      <h3>Góc 1 — Tổng thể (từ cửa nhìn vào)</h3>
+      <pre id="p1">interior photography of a bright Scandinavian living room, ~30m², view from the doorway looking in, light oak wood floor, cream white walls #F5F2EC, beige linen 3-seat sofa #D9CFC1 with slim light-oak legs against the far wall, low oak coffee table on a light woven wool rug, arc floor lamp beside the sofa, large window on the right with sheer white voile curtains and soft warm morning sunlight, freestanding light-oak bookshelf on the left near entrance, tall potted plant by the window, dusty blue #4A6FA5 accent cushions, airy minimal open layout, low furniture with open legs, wide angle 24mm, natural morning light, photorealistic, high detail --ar 4:3 --style raw --v 6</pre>
+      <button class="copy" onclick="cp('p1',this)">Copy</button>
+      <details><summary>DALL-E 3 + SDXL</summary>
+        <p><b>DALL-E 3:</b></p>
+        <pre>A photorealistic interior photo of a bright, airy Scandinavian living room about 30 square meters, seen from the doorway looking inward. The floor is light oak; walls and ceiling are warm cream white. Against the far wall sits a beige linen three-seat sofa with slim light-oak legs, facing into the room. In front of it is a low oak coffee table resting on a light woven wool rug. To the right is a large window with sheer white voile curtains, letting in soft warm morning sunlight that fills the room. An arc floor lamp leans over the right end of the sofa. On the left near the entrance stands a freestanding light-oak bookshelf. A tall potted plant sits by the window, and a few dusty-blue cushions and ceramic vases add gentle color accents. The furniture is low with open legs so the floor reads continuous and the space feels spacious. Calm, minimal, full of natural morning light.</pre>
+        <p><b>SDXL:</b></p>
+        <pre>Scandinavian living room, view from doorway, light oak floor, cream white walls, beige linen 3-seat sofa, slim oak legs, low oak coffee table, light woven wool rug, arc floor lamp, large window on right, sheer white voile curtains, warm morning sunlight, freestanding oak bookshelf left, potted plant by window, dusty blue accent cushions, minimal, airy, low furniture open legs, wide angle 24mm, photorealistic, high detail
+Negative prompt: blurry, distorted walls, warped furniture, extra windows, extra doors, lowres, watermark, text, people</pre>
+      </details>
+    </div>
+
+    <div class="card">
+      <h3>Góc 2 — Hero: góc đọc đón nắng</h3>
+      <pre id="p2">interior photography, cozy reading nook in a Scandinavian living room, beige linen sofa #D9CFC1 with light-oak legs, right end of the sofa next to a large window with sheer white voile curtains, warm morning sunlight streaming through, arc floor lamp curving over the seat, dusty blue #4A6FA5 throw cushions, light-oak side surfaces #C9A66B, tall green potted plant by the window, light woven wool rug, cream white walls, calm minimal mood, wide angle 24mm, golden morning light, photorealistic, high detail --ar 4:3 --style raw --v 6</pre>
+      <button class="copy" onclick="cp('p2',this)">Copy</button>
+      <details><summary>DALL-E 3 + SDXL</summary>
+        <p><b>DALL-E 3:</b></p>
+        <pre>A photorealistic close view of a cozy reading nook in a bright Scandinavian living room. The right end of a beige linen sofa with light-oak legs sits beside a large window dressed in sheer white voile curtains; warm morning sunlight streams through and lights the scene. An arc floor lamp curves gracefully over the seat. Dusty-blue throw cushions add a soft pop of color against the neutral fabric. A tall green potted plant stands by the window, and a light woven wool rug lies underfoot. Walls are warm cream white, wood tones are light oak. The mood is calm, minimal, and full of gentle golden morning light.</pre>
+        <p><b>SDXL:</b></p>
+        <pre>cozy reading nook, Scandinavian living room, beige linen sofa, light oak legs, right end by large window, sheer white voile curtains, warm morning sunlight, arc floor lamp over seat, dusty blue throw cushions, light oak surfaces, tall potted plant, woven wool rug, cream white walls, minimal calm, wide angle 24mm, golden hour, photorealistic, high detail
+Negative prompt: blurry, distorted walls, warped furniture, extra windows, extra doors, lowres, watermark, text, people</pre>
+      </details>
+    </div>
+
+    <div class="card">
+      <h3>Góc 3 — Chi tiết vật liệu</h3>
+      <pre id="p3">extreme close-up material detail, Scandinavian interior textures, natural beige linen upholstery #D9CFC1 weave, light oak wood leg #C9A66B grain, hand-woven wool rug #D9CFC1 texture, dusty blue #4A6FA5 linen cushion, soft warm morning side light raking across surfaces, shallow depth of field, tactile cozy minimal, macro photography, photorealistic, high detail --ar 4:3 --style raw --v 6</pre>
+      <button class="copy" onclick="cp('p3',this)">Copy</button>
+      <details><summary>DALL-E 3 + SDXL</summary>
+        <p><b>DALL-E 3:</b></p>
+        <pre>A photorealistic extreme close-up of Scandinavian interior materials: the natural weave of beige linen sofa upholstery, the visible grain of a light-oak wooden leg, a hand-woven light wool rug, and a dusty-blue linen cushion resting against them. Soft warm morning light rakes across the surfaces, emphasizing texture. Shallow depth of field, tactile and cozy, minimal palette of cream, beige, light oak and a touch of dusty blue.</pre>
+        <p><b>SDXL:</b></p>
+        <pre>close-up material detail, beige linen upholstery weave, light oak wood grain leg, hand-woven wool rug texture, dusty blue linen cushion, warm morning side light, shallow depth of field, tactile cozy minimal, macro, photorealistic, high detail
+Negative prompt: blurry, distorted walls, warped furniture, extra windows, extra doors, lowres, watermark, text, people</pre>
+      </details>
+    </div>
+
+    <div class="card">
+      <h3>Góc 4 — Góc làm việc (góc Đông-Bắc)</h3>
+      <pre id="p4">interior photography, work and dining corner in a Scandinavian living room, light-oak multipurpose table #C9A66B in the corner, large window on the right with sheer voile curtains and warm morning sunlight, slim light-oak chair, freestanding light-oak bookshelf nearby, cream white walls #F5F2EC, a laptop and a ceramic vase with dusty blue #4A6FA5 accent, minimal tidy desk, light wood floor, wide angle 24mm, bright natural morning light, photorealistic, high detail --ar 4:3 --style raw --v 6</pre>
+      <button class="copy" onclick="cp('p4',this)">Copy</button>
+      <details><summary>DALL-E 3 + SDXL</summary>
+        <p><b>DALL-E 3:</b></p>
+        <pre>A photorealistic photo of a tidy work-and-dining corner in a bright Scandinavian living room. A light-oak multipurpose table sits in the corner with a large window to its right; sheer voile curtains diffuse warm morning sunlight across the desk. A slim light-oak chair is tucked in, and a freestanding light-oak bookshelf stands nearby. Walls are warm cream white, the floor is light wood. A laptop and a dusty-blue ceramic vase add a small accent of color. The mood is calm, minimal, bright and productive.</pre>
+        <p><b>SDXL:</b></p>
+        <pre>work and dining corner, Scandinavian living room, light oak multipurpose table in corner, large window right, sheer voile curtains, warm morning sunlight, slim oak chair, freestanding oak bookshelf, cream white walls, laptop, dusty blue ceramic vase, minimal tidy, light wood floor, wide angle 24mm, bright natural light, photorealistic, high detail
+Negative prompt: blurry, distorted walls, warped furniture, extra windows, extra doors, lowres, watermark, text, people</pre>
+      </details>
+    </div>
+  </section>
+
+  <!-- 5. DỰ TOÁN -->
+  <section>
+    <h2>Dự toán</h2>
+    <div class="banner todo">
+      ⬜ <b>Chưa thực hiện.</b> Ngân sách mốc ~80 triệu (60–100), phạm vi đồ rời + hoàn thiện.
+      Chạy <code>/interior-budget</code> để lập bảng dự toán + shopping list + checklist, rồi sinh lại board này.
+    </div>
+  </section>
+
+  <!-- 6. FOOTER -->
+  <footer>
+    <p>Board xuất ngày 2026-06-15 · giá là khoảng tham khảo, ảnh render là minh hoạ cảm giác.</p>
+    <p>Nguồn: <code>designs/phong-khach/</code> — 00-project.yaml · 01-brief.md · 02-concept.md · 03-layout.svg · 04-render-prompts.md</p>
+    <p>Artifact nguồn đổi (layout/dự toán cập nhật) → sinh lại trang này bằng <code>/interior-present</code>.</p>
+  </footer>
+
+</div>
+<script>
+  function showPlan(p){
+    document.getElementById('planA').style.display = p==='A'?'block':'none';
+    document.getElementById('planB').style.display = p==='B'?'block':'none';
+    document.getElementById('btnA').classList.toggle('active', p==='A');
+    document.getElementById('btnB').classList.toggle('active', p==='B');
+  }
+  function cp(id, btn){
+    var t = document.getElementById(id).innerText;
+    var done = function(){ var o=btn.innerText; btn.innerText='Đã copy ✓'; setTimeout(function(){btn.innerText=o;},1500); };
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(t).then(done, function(){fallback(t,done);});
+    } else { fallback(t,done); }
+  }
+  function fallback(t, done){
+    var ta=document.createElement('textarea'); ta.value=t; document.body.appendChild(ta);
+    ta.select(); try{document.execCommand('copy');}catch(e){} document.body.removeChild(ta); done();
+  }
+</script>
+</body>
+</html>
